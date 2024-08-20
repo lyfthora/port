@@ -68,7 +68,7 @@
   #main-container {
     display: flex;
     flex-direction: column;
-    height: 93%;
+    height: 87%;
     gap: 0.4rem;
     justify-content: flex-start;
   }
