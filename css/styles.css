@@ -41,7 +41,7 @@ body {
   height: 100vh;
   background-color: #0d1117;
   color: #c9d1d9;
-  font-size: 13.3px;
+  font-size: 14px;
 }
 
 .darkmode {
@@ -308,8 +308,8 @@ pre {
 }
 
 .ui-list img {
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .ui-list div:hover:not(.selected-item):not(.selected-item>div) {
