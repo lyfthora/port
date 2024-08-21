@@ -86,18 +86,21 @@ svg {
 
 .neofetch-gifs {
   position: relative;
-  width: 100%;
+  width: 65.7%;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  overflow: hidden;
+  padding-bottom: 37%;
+  margin: 0 auto;
+ 
 }
 .lainweb {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid;
+
 
 }
 
