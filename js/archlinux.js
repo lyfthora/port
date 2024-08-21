@@ -54,10 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="project-button" href="https://github.com/Briarivero/fantazia" target="_blank">Github</a>
                       </div>
                     </div>
-                    <div>This website was built in <span class="text-orange">2/3 weeks</span> using only HTML, CSS, JavaScript and PHP with <span class="text-orange">no other dependencies.</span> 
+                    <div>This website was built in <span class="text-orange">2 weeks</span> using only HTML, CSS, JavaScript and PHP with <span class="text-orange">no other dependencies.</span> 
                     <div>It is also a <span class="text-orange">dinamic website</span> that is <span class="text-blue">completely responsive.</span> 
                     <div>The page was <span class="text-blue">developed</span> somewhat improvisationally; ideas came to mind, and I tried to <span class="text-orange">implement</span> them. Initially, it was only meant to be HTML, CSS, and JavaScript. However, while <span class="text-blue">developing</span> it, I decided to incorporate PHP to add more <span class="text-orange">functionality</span>.</div>
-                    <div>I hope you <span class="text-pink">enjoy</span> your stay and <span class="text-orange">come back</span> soon! ;)</div>
                   </div>
                 </div>
               </div>
