@@ -1,24 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const contentContainer = document.getElementById('main-content');
-    
- 
-    document.querySelectorAll('#experience .ui-list div').forEach(item => {
-        item.addEventListener('click', () => {
-            const id = item.getAttribute('experience-id');
-            updateContent('experience', id);
-        });
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const contentContainer = document.getElementById("main-content");
 
-    document.querySelectorAll('#projects .ui-list div').forEach(item => {
-        item.addEventListener('click', () => {
-            const id = item.getAttribute('project-id');
-            updateContent('project', id);
-        });
+  document.querySelectorAll("#experience .ui-list div").forEach((item) => {
+    item.addEventListener("click", () => {
+      const id = item.getAttribute("experience-id");
+      updateContent("experience", id);
     });
+  });
 
-    const contentInfo = {
-        experience: {
-            'experience1': `
+  document.querySelectorAll("#projects .ui-list div").forEach((item) => {
+    item.addEventListener("click", () => {
+      const id = item.getAttribute("project-id");
+      updateContent("project", id);
+    });
+  });
+
+  const contentInfo = {
+    experience: {
+      experience1: `
               <div class="container-content">
                 <div class="outer-paragraph-container">
                   <div class="inner-paragraph-container mt-4">
@@ -34,13 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             `,
-            'experience2': `
-              <!-- Define content for experience2 -->
+      experience2: `
+              <!-- experience2 -->
             `,
-            // Add other experiences here
-        },
-        project: {
-            'project1': `
+    },
+    project: {
+      project1: `
               <div class="container-content">
                 <div class="outer-paragraph-container">
                   <div class="inner-paragraph-container mt-4">
@@ -59,20 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div>The page was <span class="text-blue">developed</span> somewhat improvisationally; ideas came to mind, and I tried to <span class="text-orange">implement</span> them. Initially, it was only meant to be HTML, CSS, and JavaScript. However, while <span class="text-blue">developing</span> it, I decided to incorporate PHP to add more <span class="text-orange">functionality</span>.</div>
                   </div>
                 </div>
-              </div>
+                <div class="neofetch-gifs">
+                  <video class="lainweb" width="320" height="240" controls>
+                  <source src="gifs/lainweb.mp4" type="video/mp4">
+                  </video>
+                </div>
+            </div>
+              
             `,
-            'project2': `
-              <!-- Define content for project2 -->
+      project2: `
+              <!-- project2 -->
             `,
-            // Add other projects here
-        }
-    };
+    },
+  };
 
-    function updateContent(type, id) {
-        if (contentInfo[type] && contentInfo[type][id]) {
-            contentContainer.innerHTML = contentInfo[type][id];
-        } else {
-            contentContainer.innerHTML = '<p>Content not found.</p>';
-        }
+  function updateContent(type, id) {
+    if (contentInfo[type] && contentInfo[type][id]) {
+      contentContainer.innerHTML = contentInfo[type][id];
+    } else {
+      contentContainer.innerHTML = "<p>Content not found.</p>";
     }
+  }
 });
