@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                 </div>
                 <div class="neofetch-gifs">
-                  <video class="lainweb" width="320" height="240" controls>
+                  <video class="lainweb" loop autoplay muted>
                   <source src="gifs/lainweb.mp4" type="video/mp4">
                   </video>
                 </div>
