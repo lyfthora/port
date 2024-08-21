@@ -2,18 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentContainer = document.getElementById('main-content');
     
  
-    document.querySelectorAll('.ui-list div').forEach(item => {
-      item.addEventListener('click', () => {
-        const id = item.getAttribute('experience-id');
-        updateContent(id);
-      });
+    document.querySelectorAll('#experience .ui-list div').forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.getAttribute('experience-id');
+            updateContent('experience', id);
+        });
     });
 
-    function updateContent(id) {
-        let content = '';
-        switch (id) {
-          case 'test1':
-            content = `
+    document.querySelectorAll('#projects .ui-list div').forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.getAttribute('project-id');
+            updateContent('project', id);
+        });
+    });
+
+    const contentInfo = {
+        experience: {
+            'experience1': `
               <div class="container-content">
                 <div class="outer-paragraph-container">
                   <div class="inner-paragraph-container mt-4">
@@ -28,15 +33,47 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 </div>
               </div>
-            `;
-            break;
-          case 'test2':
-            
-            break;
-        
-          
+            `,
+            'experience2': `
+              <!-- Define content for experience2 -->
+            `,
+            // Add other experiences here
+        },
+        project: {
+            'project1': `
+              <div class="container-content">
+                <div class="outer-paragraph-container">
+                  <div class="inner-paragraph-container mt-4">
+                    <div>
+                      <h1>Lain Web</h1>
+                      <h2>[Built in <span class="text-pink">2024</span>]</h2>
+                      <div class="technologies-row">
+                        <span class="text-blue">HTML</span> CSS <span class="text-blue">JavaScript</span> <span class="text-orange">PHP</span>
+                      </div>
+                      <div class="buttons-container">
+                        <a class="project-button" href="https://github.com/Briarivero/fantazia" target="_blank">Github</a>
+                      </div>
+                    </div>
+                    <div>This website was built in <span class="text-orange">2/3 weeks</span> using only HTML, CSS, JavaScript and PHP with <span class="text-orange">no other dependencies.</span> 
+                    <div>It is also a <span class="text-orange">dinamic website</span> that is <span class="text-blue">completely responsive.</span> 
+                    <div>The page was <span class="text-blue">developed</span> somewhat improvisationally; ideas came to mind, and I tried to <span class="text-orange">implement</span> them. Initially, it was only meant to be HTML, CSS, and JavaScript. However, while <span class="text-blue">developing</span> it, I decided to incorporate PHP to add more <span class="text-orange">functionality</span>.</div>
+                    <div>I hope you <span class="text-pink">enjoy</span> your stay and <span class="text-orange">come back</span> soon! ;)</div>
+                  </div>
+                </div>
+              </div>
+            `,
+            'project2': `
+              <!-- Define content for project2 -->
+            `,
+            // Add other projects here
         }
-        
-        contentContainer.innerHTML = content;
-      }
-    });
+    };
+
+    function updateContent(type, id) {
+        if (contentInfo[type] && contentInfo[type][id]) {
+            contentContainer.innerHTML = contentInfo[type][id];
+        } else {
+            contentContainer.innerHTML = '<p>Content not found.</p>';
+        }
+    }
+});
