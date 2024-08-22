@@ -103,6 +103,17 @@ svg {
 
 
 }
+.chatbot-pic {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 104%;
+  height: 100%;
+  border: 1px solid;
+
+
+}
 
 .neofetch-text {
   
