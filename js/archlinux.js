@@ -89,6 +89,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
             `,
+      project3: `
+
+            `,
+      project4: `
+               <div class="container-content">
+                <div class="outer-paragraph-container">
+                  <div class="inner-paragraph-container mt-4">
+                    <div>
+                      <h1>Paradise</h1>
+                      <h2>[Built in <span class="text-pink">2023</span>]</h2>
+                      <div class="technologies-row">
+                        <span class="text-blue">HTML</span> <span class="text-orange">CSS</span> <span class="text-pink">JavaScript</span>
+                      </div>
+                      <div class="buttons-container">
+                        <a class="project-button" href="https://github.com/brayiann/paradise" target="_blank">Github</a>
+                      </div>
+                    </div>
+                    <div>The <span class="text-pink">website</span> was created during i was <span class="text-orange">studying</span>, designed for a <span class="text-blue">friend</span> who needed a <span class="text-pink">modern</span> yet <span class="text-orange">minimalist</span> online presence. 
+                    <div>It was built to be <span class="text-blue">clean</span>, <span class="text-pink">responsive</span>, and <span class="text-orange">user-friendly</span> across all devices.
+                    <div>The project started with the goal of creating a <span class="text-pink">clean and adaptable layout</span> for all devices. Additionally, there is the option to integrate a <span class="text-blue">server-side component</span> using <span class="text-orange">PHP</span> to add more <span class="text-pink">advanced functionality</span> to the website, enabling dynamic content and interaction.</div>
+                  </div>
+                </div>
+                <div class="neofetch-gifs">
+                  <video class="lainweb" loop autoplay muted>
+                  <source src="gifs/paradise2.mp4" type="video/mp4">
+                  </video>
+                </div>
+            </div>
+             
+
+            `,
     },
   };
 
