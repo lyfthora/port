@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       </div>
                       <div class="buttons-container">
                         <a class="project-button" href="https://github.com/brayiann/paradise" target="_blank">Github</a>
+                        <a class="project-button" href="https://brayiann.github.io/paradise/" target="_blank">DEMO</a>
                       </div>
                     </div>
                     <div>The <span class="text-pink">website</span> was created during i was <span class="text-orange">studying</span>, designed for a <span class="text-blue">friend</span> who needed a <span class="text-pink">modern</span> yet <span class="text-orange">minimalist</span> online presence. 
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `,
     },
   };
+
 
   function updateContent(type, id) {
     if (contentInfo[type] && contentInfo[type][id]) {
