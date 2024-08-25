@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-
   function updateContent(type, id) {
     if (contentInfo[type] && contentInfo[type][id]) {
       contentContainer.innerHTML = contentInfo[type][id];
