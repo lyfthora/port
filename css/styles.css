@@ -50,9 +50,9 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: .4em;
+  width: 0.4em;
   background-color: #0d1117;
-  height: .2em;
+  height: 0.2em;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -77,12 +77,10 @@ svg {
   position: relative;
   max-width: 100%;
   color: white;
-  
+
   width: 50%;
   height: 50%;
-  
 }
-
 
 .neofetch-gifs {
   position: relative;
@@ -90,7 +88,6 @@ svg {
   height: 0;
   padding-bottom: 37%;
   margin: 0 auto;
- 
 }
 .lainweb {
   position: absolute;
@@ -100,8 +97,6 @@ svg {
   width: 100%;
   height: 100%;
   border: 1px solid;
-
-
 }
 .chatbot-pic {
   position: absolute;
@@ -111,30 +106,24 @@ svg {
   width: 104%;
   height: 100%;
   border: 1px solid;
-
-
 }
 
 .neofetch-text {
-  
-    white-space: pre;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    line-height: 1;
-    left: -79px;
-    font-size: 14px;
-    bottom: -13px;
-
-
-  
+  white-space: pre;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  left: -79px;
+  font-size: 14px;
+  bottom: -13px;
 }
 
 #main-container {
   display: flex;
   flex-direction: column;
   height: 93%;
-  gap: .4rem;
+  gap: 0.4rem;
   justify-content: flex-start;
 }
 
@@ -143,13 +132,13 @@ svg {
   flex-direction: row;
   width: 100%;
   height: 100%;
-  gap: .4rem;
+  gap: 0.4rem;
 }
 
 #left-section {
   display: flex;
   flex-direction: column;
-  gap: .8rem;
+  gap: 0.8rem;
   width: 25%;
 }
 
@@ -183,8 +172,8 @@ svg {
   justify-content: space-between;
   align-items: center;
   border: none;
-  margin-top: .2rem;
-  font-size: .8rem;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
   overflow: hidden;
   min-height: 4ch;
 }
@@ -194,21 +183,21 @@ svg {
 }
 
 #home-section-paragraph {
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
 }
 
 .footer-item {
   display: flex;
   flex-direction: row;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  border: .1px solid #c9d1d9;
+  border: 0.1px solid #c9d1d9;
   position: relative;
-  padding-top: .2rem;
+  padding-top: 0.2rem;
   height: 33%;
 }
 
@@ -235,7 +224,7 @@ svg {
 
 .image-container {
   width: 100%;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   display: flex;
   justify-content: center;
 }
@@ -244,12 +233,12 @@ svg {
   display: flex;
   justify-content: center;
   width: 70%;
-  padding: .5rem;
-  border: .1px solid #79c0ff;
+  padding: 0.5rem;
+  border: 0.1px solid #79c0ff;
 }
 
 .project-image {
-  margin: .5rem;
+  margin: 0.5rem;
   width: 100%;
   max-width: fit-content;
   background-color: #1e4273;
@@ -258,28 +247,25 @@ svg {
 pre {
   display: block;
   font-family: "Fira Mono", monospace, sans-serif;
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.2rem;
-  padding: .5rem;
-  border: .1px solid #79c0ff;
+
+  border: 0.1px solid #79c0ff;
   color: #c9d1d9;
   overflow-x: scroll;
+  margin: 18px 150px -50px 150px;
 }
-
-
-
-
+code.html {
+  position: static;
+}
 
 .h-fill {
   flex-grow: 1;
 }
 
-
-
-
 .decorating-text {
   position: absolute;
-  padding: 0 .1rem;
+  padding: 0 0.1rem;
   width: fit-content;
 }
 
@@ -292,7 +278,7 @@ pre {
   position: relative;
   z-index: 1;
   background-color: #0d1117;
-  height: .5ch;
+  height: 0.5ch;
   top: -1ch;
   left: -2px;
   width: 104%;
@@ -310,9 +296,9 @@ pre {
 .ui-list {
   display: flex;
   flex-direction: column;
-  gap: .2rem;
+  gap: 0.2rem;
   width: 99%;
-  padding: .2rem;
+  padding: 0.2rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -336,7 +322,7 @@ pre {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .ui-list img {
@@ -344,7 +330,7 @@ pre {
   height: 1.5rem;
 }
 
-.ui-list div:hover:not(.selected-item):not(.selected-item>div) {
+.ui-list div:hover:not(.selected-item):not(.selected-item > div) {
   background-color: #141a24;
 }
 
@@ -360,7 +346,7 @@ pre {
   scrollbar-color: #79c0ff #0d1117;
 }
 
-div.selected-frame>::-webkit-scrollbar-thumb {
+div.selected-frame > ::-webkit-scrollbar-thumb {
   background-color: #79c0ff;
 }
 
@@ -382,17 +368,14 @@ div.selected-frame>::-webkit-scrollbar-thumb {
 }
 
 .text-xs {
-  font-size: .6rem;
+  font-size: 0.6rem;
 }
 
-
-
 .reference {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #58a6ff;
 }
-
 
 .buttons-container {
   display: flex;
@@ -403,8 +386,8 @@ div.selected-frame>::-webkit-scrollbar-thumb {
 
 .project-button {
   all: unset;
-  padding: .5rem 1rem;
-  border: .1px solid #c9d1d9;
+  padding: 0.5rem 1rem;
+  border: 0.1px solid #c9d1d9;
   color: #c9d1d9;
   cursor: pointer;
   min-width: 150px;
@@ -417,7 +400,5 @@ div.selected-frame>::-webkit-scrollbar-thumb {
 }
 
 .project-button:active {
-  opacity: .5;
+  opacity: 0.5;
 }
-
-
