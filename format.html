@@ -25,12 +25,3 @@
     </div>
   </div>
 </div>
-import React, { Fragment, useRef, useEffect, useState } from "react"; import
-cover from "../../img/cover.jpg"; function useOutsideClick(ref, callback, when)
-{ const savedCallback = useRef(callback); useEffect(() => {
-savedCallback.current = callback; }); function handler(e) { if (ref.current &&
-!ref.current.contains(e.target)) { savedCallback.current(); } } useEffect(() =>
-{ if (when) { const timeoutId = setTimeout(() => {
-document.addEventListener("click", handler); }, 100); return () => {
-clearTimeout(timeoutId); document.removeEventListener("click", handler); }; } },
-[when]); }

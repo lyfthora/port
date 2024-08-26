@@ -1,24 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("main-content");
-
+  //experiencia
   document.querySelectorAll("#experience .ui-list div").forEach((item) => {
     item.addEventListener("click", () => {
       const id = item.getAttribute("experience-id");
       updateContent("experience", id);
     });
   });
+  //projectos
+  document
+    .querySelectorAll("#projects .ui-list > div")
+    .forEach((item, index) => {
+      item.addEventListener("click", () => {
+        const id = item.getAttribute("project-id");
+        updateContent("project", id);
 
-  document.querySelectorAll("#projects .ui-list div").forEach((item) => {
-    item.addEventListener("click", () => {
-      const id = item.getAttribute("project-id");
-      updateContent("project", id);
+        // Actualizar el número del proyecto
+        const listIndex = document.querySelector("#projects .list-index p");
+        listIndex.textContent = `${index + 1} of 4`;
+      });
     });
-  });
-
-  document.querySelectorAll("#skills .ui-list div").forEach((item) => {
+  //skills y herramientas
+  document.querySelectorAll("#skills .ui-list > div").forEach((item, index) => {
     item.addEventListener("click", () => {
       const id = item.getAttribute("skills-id");
       updateContent("skills", id);
+
+      // Actualizar el número de la habilidad
+      const skillsIndex = document.querySelector("#skills-index p");
+      skillsIndex.textContent = `${index + 1} of 6`;
     });
   });
 
@@ -510,7 +520,7 @@ while (<span class="text-blue">$row</span> = <span class="text-blue">$result</sp
         <div class="outer-paragraph-container">
           <div class="inner-paragraph-container mt-4">
             <div>
-              <h1><span class="text-pink">Python</span></h1>
+              <h1><span class="text-pink">React</span></h1>
               <h2></h2>
               <div class="technologies-row"></div>
             </div>
