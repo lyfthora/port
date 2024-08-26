@@ -1,35 +1,36 @@
 <div>
-  Python is a
-  <span class="text-orange">high-level programming language</span> known for its
-  <span class="text-blue">readability</span> and
-  <span class="text-pink">versatility</span>. Unlike
-  <span class="text-orange">HTML</span> and
-  <span class="text-orange">CSS</span>, which are used for web content structure
-  and styling, Python is a
-  <span class="text-blue">general-purpose language</span> that can be used for
-  <span class="text-pink">web development</span>,
-  <span class="text-blue">data analysis</span>,
-  <span class="text-orange">artificial intelligence</span>, and more.
+  React is a <span class="text-orange">JavaScript library</span> that enables
+  developers to create
+  <span class="text-blue">dynamic and interactive</span> user interfaces for web
+  applications. Unlike traditional methods of building UIs, React allows
+  developers to build components that can efficiently update and render the
+  right elements when data changes, making it ideal for
+  <span class="text-pink">dynamic</span> and
+  <span class="text-blue">responsive</span> web applications.
   <div>
-    By using Python, developers can write
-    <span class="text-blue">efficient and clean code</span> that supports a wide
-    range of programming paradigms, including
-    <span class="text-pink">object-oriented</span>,
-    <span class="text-blue">functional</span>, and
-    <span class="text-orange">procedural programming</span>. This enables the
-    creation of <span class="text-pink">scalable</span> and
-    <span class="text-blue">maintainable</span> software solutions.
+    By using React, developers can create
+    <span class="text-orange">component-based architectures</span> where the UI
+    is broken down into smaller, reusable components. This enables the creation
+    of <span class="text-pink">modular</span> and
+    <span class="text-blue">maintainable</span> applications, where each
+    component manages its own state and can be independently tested and updated.
     <div>
-      Python also supports
-      <span class="text-blue">extensive libraries and frameworks</span> such as
-      <span class="text-pink">Django</span>,
-      <span class="text-orange">Flask</span>, and
-      <span class="text-blue">NumPy</span>, facilitating
-      <span class="text-pink">rapid development</span> and
-      <span class="text-orange">powerful data processing</span>. This makes
-      Python an <span class="text-blue">ideal choice</span> for a variety of
-      <span class="text-pink">applications</span> and
-      <span class="text-orange">projects</span>.
+      React also supports
+      <span class="text-blue">declarative programming</span>, meaning developers
+      can describe what the UI should look like based on the current state, and
+      React will efficiently manage the updates. This leads to
+      <span class="text-orange">faster</span> and more
+      <span class="text-blue">scalable</span> web applications with better
+      performance and easier maintenance.
     </div>
   </div>
 </div>
+import React, { Fragment, useRef, useEffect, useState } from "react"; import
+cover from "../../img/cover.jpg"; function useOutsideClick(ref, callback, when)
+{ const savedCallback = useRef(callback); useEffect(() => {
+savedCallback.current = callback; }); function handler(e) { if (ref.current &&
+!ref.current.contains(e.target)) { savedCallback.current(); } } useEffect(() =>
+{ if (when) { const timeoutId = setTimeout(() => {
+document.addEventListener("click", handler); }, 100); return () => {
+clearTimeout(timeoutId); document.removeEventListener("click", handler); }; } },
+[when]); }

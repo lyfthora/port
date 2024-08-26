@@ -506,6 +506,73 @@ while (<span class="text-blue">$row</span> = <span class="text-blue">$result</sp
     </div>
     `,
       skills6: `
+      <div class="container-content">
+        <div class="outer-paragraph-container">
+          <div class="inner-paragraph-container mt-4">
+            <div>
+              <h1><span class="text-pink">Python</span></h1>
+              <h2></h2>
+              <div class="technologies-row"></div>
+            </div>
+            <div>
+              React is a <span class="text-orange">JavaScript library</span> that enables
+              developers to create
+              <span class="text-blue">dynamic and interactive</span> user interfaces for web
+              applications. Unlike traditional methods of building UIs, React allows
+              developers to build components that can efficiently update and render the
+              right elements when data changes, making it ideal for
+              <span class="text-pink">dynamic</span> and
+              <span class="text-blue">responsive</span> web applications.
+              <div>
+                By using React, developers can create
+                <span class="text-orange">component-based architectures</span> where the UI
+                is broken down into smaller, reusable components. This enables the creation
+                of <span class="text-pink">modular</span> and
+                <span class="text-blue">maintainable</span> applications, where each
+                component manages its own state and can be independently tested and updated.
+                <div>
+                  React also supports
+                  <span class="text-blue">declarative programming</span>, meaning developers
+                  can describe what the UI should look like based on the current state, and
+                  React will efficiently manage the updates. This leads to
+                  <span class="text-orange">faster</span> and more
+                  <span class="text-blue">scalable</span> web applications with better
+                  performance and easier maintenance.
+                </div>
+              </div>
+            </div>
+            <pre>
+                <code class="html">
+import <span class="text-pink">React</span>, { <span class="text-blue">Fragment</span>, <span class="text-blue">useRef</span>, <span class="text-blue">useEffect</span>, <span class="text-blue">useState</span> } from "<span class="text-orange">react</span>";
+import <span class="text-blue">cover</span> from "<span class="text-orange">../../img/cover.jpg</span>";
+function <span class="text-blue">useOutsideClick</span>(<span class="text-orange">ref</span>, <span class="text-orange">callback</span>, <span class="text-orange">when</span>) {
+  const <span class="text-blue">savedCallback</span> = <span class="text-blue">useRef</span>(<span class="text-orange">callback</span>);
+  <span class="text-blue">useEffect</span>(() => {
+    <span class="text-blue">savedCallback</span>.<span class="text-orange">current</span> = <span class="text-orange">callback</span>;
+  });
+  function <span class="text-blue">handler</span>(<span class="text-orange">e</span>) {
+    if (<span class="text-orange">ref.current</span> && !<span class="text-orange">ref.current</span>.<span class="text-blue">contains</span>(<span class="text-orange">e.target</span>)) {
+      <span class="text-blue">savedCallback</span>.<span class="text-orange">current</span>();
+    }
+  }
+  <span class="text-blue">useEffect</span>(() => {
+    if (<span class="text-orange">when</span>) {
+      const <span class="text-blue">timeoutId</span> = setTimeout(() => {
+        <span class="text-orange">document.addEventListener</span>("click", <span class="text-blue">handler</span>);
+      }, 100);
+      return () => {
+        <span class="text-blue">clearTimeout</span>(<span class="text-orange">timeoutId</span>);
+        <span class="text-orange">document.removeEventListener</span>("click", <span class="text-blue">handler</span>);
+      };
+    }
+  }, [<span class="text-orange">when</span>]);
+}
+                </code>
+              </pre>
+          </div>
+        </div>
+      </div>
+    </div>
 
     `,
     },
