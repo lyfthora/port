@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("main-content");
+  const originalContent = contentContainer.innerHTML;
+
+  //volver al contenido original
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      contentContainer.innerHTML = originalContent;
+      contentContainer.classList.remove("hidden");
+    }
+  });
+
   //experiencia
   document.querySelectorAll("#experience .ui-list div").forEach((item) => {
     item.addEventListener("click", () => {
@@ -7,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateContent("experience", id);
     });
   });
+
   //projectos
   document
     .querySelectorAll("#projects .ui-list > div")
@@ -20,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listIndex.textContent = `${index + 1} of 4`;
       });
     });
+
   //skills y herramientas
   document.querySelectorAll("#skills .ui-list > div").forEach((item, index) => {
     item.addEventListener("click", () => {
@@ -44,9 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h2></h2>
                 <div class="technologies-row"></div>
               </div>
-              <div>We meticulously sculpt <span class="text-orange">bespoke software</span> and conjure <span class="text-blue">hardware wonders</span>, transcending the mundane.</div>
-              <div>In the digital symphony, our craft includes <span class="text-blue">exotic spells and scrolls</span>, weaving enchantment into the very fabric of technology.</div>
-            </div>
+              <div>We develop <span class="text-orange">custom chatbots</span> and apply <span class="text-blue">Text to SQL</span> to transform questions into precise database queries.
+              <div>We implement <span class="text-blue">RAG models (Retrieval-Augmented Generation)</span> with various LLMs (Large Language Models) and create <span class="text-orange">multi-agent systems</span> for complex solutions.
+              <div>We also perform <span class="text-orange">model fine-tuning</span> to adapt them to specific needs, refining every detail in our machine learning experience.</div></div>
           </div>
         </div>
       `,
@@ -156,6 +168,60 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       `,
+      project4: `
+        <div class="container-content">
+          <div class="outer-paragraph-container">
+            <div class="inner-paragraph-container mt-4">
+              <div>
+                <h1>Mechanography</h1>
+                <h2>[Built in <span class="text-pink">2024</span>]</h2>
+                <div class="technologies-row">
+                  <span class="text-pink">HTML</span> <span class="text-blue">CSS</span> <span class="text-orange">JavaScript</span>
+                </div>
+                <div class="buttons-container">
+                  <a class="project-button" href="https://github.com/brayiann/mecanografiaa" target="_blank">Github</a>
+                  <a class="project-button" href="https://brayiann.github.io/mecanografiaa/" target="_blank">DEMO</a>
+                </div>
+              </div>
+             <div>The <span class="text-blue">project</span> was developed to improve <span class="text-pink">typing skills</span>, focusing on quick and accurate practice. A <span class="text-orange">user-friendly interface</span> was designed to allow users to measure their speed and accuracy in real-time. 
+             <div>The site was built using <span class="text-blue">JavaScript</span> to handle the typing logic and provide a smooth user experience. Additionally, the option to add <span class="text-orange">server-side functionality</span> with <span class="text-pink">PHP</span> was considered to manage an online <span class="text-blue">leaderboard</span>, enabling users to compare their scores with other participants.
+             <div></div>
+             </div>
+          </div>
+          <div class="neofetch-gifs">
+            <video class="lainweb" loop autoplay muted>
+              <source src="gifs/mecanografia1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      `,
+      project5: `
+      <div class="container-content">
+        <div class="outer-paragraph-container">
+          <div class="inner-paragraph-container mt-4">
+            <div>
+              <h1>Paradise</h1>
+              <h2>[Built in <span class="text-pink">2023</span>]</h2>
+              <div class="technologies-row">
+                <span class="text-blue">HTML</span> <span class="text-orange">CSS</span> <span class="text-pink">JavaScript</span>
+              </div>
+              <div class="buttons-container">
+                <a class="project-button" href="https://github.com/brayiann/paradise" target="_blank">Github</a>
+                <a class="project-button" href="https://brayiann.github.io/paradise/" target="_blank">DEMO</a>
+              </div>
+            </div>
+            <div>The <span class="text-pink">website</span> was created during i was <span class="text-orange">studying</span>, designed for a <span class="text-blue">friend</span> who needed a <span class="text-pink">modern</span> yet <span class="text-orange">minimalist</span> online presence.
+            <div>It was built to be <span class="text-blue">clean</span>, <span class="text-pink">responsive</span>, and <span class="text-orange">user-friendly</span> across all devices.
+            <div>The project started with the goal of creating a <span class="text-pink">clean and adaptable layout</span> for all devices. Additionally, there is the option to integrate a <span class="text-blue">server-side component</span> using <span class="text-orange">PHP</span> to add more <span class="text-pink">advanced functionality</span> to the website, enabling dynamic content and interaction.</div>
+          </div>
+        </div>
+        <div class="neofetch-gifs">
+          <video class="lainweb" loop autoplay muted>
+            <source src="gifs/paradise2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    `,
     },
     skills: {
       skills1: `
@@ -595,4 +661,5 @@ function <span class="text-blue">useOutsideClick</span>(<span class="text-orange
       contentContainer.innerHTML = "<p>Content not found.</p>";
     }
   }
+  contentContainer.classList.remove("hidden");
 });
