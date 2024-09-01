@@ -402,3 +402,27 @@ div.selected-frame > ::-webkit-scrollbar-thumb {
 .project-button:active {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 600px) {
+  .neofetch,
+  #home.container.selected-frame,
+  #experience.container,
+  #projects.container,
+  #skills.container,
+  #footer-help.footer-item {
+    display: none;
+  }
+  #main-content.container.h-fill {
+    margin-left: -115px;
+  }
+
+  #footer.container.text-blue {
+    display: grid;
+    justify-content: center;
+  }
+  #main-container {
+    height: 90%;
+  }
+  #main-content .container-content {
+  }
+}
