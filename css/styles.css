@@ -114,9 +114,9 @@ svg {
   width: 100%;
   height: 100%;
   line-height: 1;
-  left: -79px;
-  font-size: 14px;
-  bottom: -13px;
+  left: calc(-3vw);
+  font-size: calc(0.7vw);
+  bottom: calc(-3vh);
 }
 
 #main-container {
@@ -422,5 +422,10 @@ div.selected-frame > ::-webkit-scrollbar-thumb {
   }
   #main-container {
     height: 90%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .neofetch {
+    display: none;
   }
 }
