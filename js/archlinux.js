@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Actualizar el número del proyecto
         const listIndex = document.querySelector("#projects .list-index p");
-        listIndex.textContent = `${index + 1} of 4`;
+        listIndex.textContent = `${index + 1} of 5`;
       });
     });
 
