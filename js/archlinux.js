@@ -77,16 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //actualizar contenido
   async function updateContent(type, id) {
     if (contentInfo[type] && contentInfo[type][id]) {
-      try {
-        const content = await loadContent(contentInfo[type][id]);
-        contentContainer.innerHTML = content;
-      } catch (error) {
-        console.error(`Failed to load content for ${type} ${id}:`, error);
-        contentContainer.innerHTML = `<p>Failed to load content. Please try again later.</p>`;
-      }
-    } else {
-      console.error(`No content info found for ${type} ${id}`);
-      contentContainer.innerHTML = `<p>Content not found.</p>`;
+      const content = await loadContent(contentInfo[type][id]);
+      contentContainer.innerHTML = content;
     }
   }
   contentContainer.classList.remove("hidden");
