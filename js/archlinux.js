@@ -95,11 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
 //info del contenido
 const contentInfo = {
   experience: {
-    experience1: "/data/experience/experience1.html",
+    experience1: "../data/experience/experience1.html",
   },
   project: {
-    project1: "/data/project/project1.html",
-    project2: "/data/project/project2.html",
+    project1: "../data/project/project1.html",
+    project2: "../data/project/project2.html",
     project3: "/data/project/project3.html",
     project4: "/data/project/project4.html",
     project5: "/data/project/project5.html",
