@@ -201,10 +201,16 @@ svg {
   height: 33%;
 }
 
-#left-section .container:hover:not(.selected-frame) {
-  border-color: #8090a8;
+#left-section .container#experience:hover:not(.selected-frame) {
+  border-color: #58a6ff;
 }
 
+#left-section .container#projects:hover:not(.selected-frame) {
+  border-color: #ec8e2c;
+}
+#left-section .container#skills:hover:not(.selected-frame) {
+  border-color: #bc8cff;
+}
 .container-content {
   display: flex;
   flex-direction: column;
@@ -335,7 +341,7 @@ code.html {
 }
 
 .selected-frame {
-  border-color: #79c0ff;
+  border-color: #58a6ff;
 }
 
 .selected-frame .decorating-text {
