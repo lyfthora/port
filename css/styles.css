@@ -373,16 +373,6 @@ div.selected-frame > ::-webkit-scrollbar-thumb {
   color: #bc8cff;
 }
 
-.text-xs {
-  font-size: 0.6rem;
-}
-
-.reference {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #58a6ff;
-}
-
 .buttons-container {
   display: flex;
   flex-direction: row;
