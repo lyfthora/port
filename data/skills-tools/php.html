@@ -1,0 +1,72 @@
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-orange">PHP</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        PHP is a
+        <span class="text-orange">server-side scripting language</span> that
+        enables developers to create
+        <span class="text-blue">dynamic and interactive</span> web content.
+        Unlike <span class="text-orange">HTML</span> and
+        <span class="text-orange">CSS</span>, which are used for structure and
+        styling, PHP is responsible for generating
+        <span class="text-pink">dynamic</span> content and
+        <span class="text-blue">handling server-side logic</span>, such as
+        interacting with databases and processing form data.
+        <div>
+          By using PHP, developers can embed
+          <span class="text-orange">server-side scripts</span> within HTML,
+          allowing for the <span class="text-pink">dynamic generation</span> of
+          content based on user interactions and other server-side conditions.
+          This enables the creation of
+          <span class="text-blue">customizable</span> and
+          <span class="text-orange">interactive</span> web applications that can
+          respond to user inputs and provide personalized experiences.
+          <div>
+            PHP also supports
+            <span class="text-blue">database interaction</span> through
+            mechanisms like <span class="text-pink">MySQL</span> and
+            <span class="text-orange">PDO</span>, allowing the creation of
+            <span class="text-pink">data-driven</span> web applications that can
+            retrieve, update, and store data efficiently. This leads to
+            <span class="text-orange">dynamic</span> and
+            <span class="text-blue">robust</span> web solutions.
+          </div>
+        </div>
+        <pre>
+            <code class="html">
+<span class="text-pink">&lt;?php</span>
+session_start();
+include <span class="text-blue">'../db.php'</span>;
+if (!isset(<span class="text-blue">$_SESSION</span>[<span class="text-orange">'loggedin'</span>] ) || <span class="text-blue">$_SESSION</span>[<span class="text-orange">'loggedin'</span>] !== <span class="text-blue">true</span>) {
+header(<span class="text-blue">"Location: ../login/index.php"</span>);
+exit();
+}
+<span class="text-blue">$stmt</span> = <span class="text-blue">$conn</span>-&gt;prepare("
+<span class="text-pink">SELECT</span> p.<span class="text-orange">id</span>, p.<span class="text-orange">post_content</span>, p.<span class="text-orange">post_image</span>, p.<span class="text-orange">created_at</span>, u.<span class="text-orange">username</span>, u.<span class="text-orange">profile_picture</span>, 
+       <span class="text-pink">COUNT</span>(c.<span class="text-orange">id</span>) <span class="text-pink">AS</span> <span class="text-orange">comment_count</span>
+<span class="text-pink">FROM</span> <span class="text-orange">posts</span> p
+<span class="text-pink">JOIN</span> <span class="text-orange">usuarios</span> u <span class="text-pink">ON</span> p.<span class="text-orange">username</span> = u.<span class="text-orange">username</span>
+<span class="text-pink">LEFT JOIN</span> <span class="text-orange">comments</span> c <span class="text-pink">ON</span> p.<span class="text-orange">id</span> = c.<span class="text-orange">post_id</span>
+<span class="text-pink">GROUP BY</span> p.<span class="text-orange">id</span>
+<span class="text-pink">ORDER BY</span> p.<span class="text-orange">id</span> <span class="text-pink">DESC</span>
+");
+<span class="text-blue">$stmt</span>-&gt;execute();
+<span class="text-blue">$result</span> = <span class="text-blue">$stmt</span>-&gt;get_result();
+<span class="text-blue">$posts</span> = [];
+while (<span class="text-blue">$row</span> = <span class="text-blue">$result</span>-&gt;fetch_assoc()) {
+<span class="text-blue">$posts</span>[] = <span class="text-blue">$row</span>;
+}
+<span class="text-blue">$stmt</span>-&gt;close();
+<span class="text-blue">$conn</span>-&gt;close();
+<span class="text-pink">?&gt;</span>
+            </code>
+          </pre>
+      </div>
+    </div>
+  </div>
+</div>
