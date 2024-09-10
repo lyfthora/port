@@ -11,16 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //experiencia
-  document.querySelectorAll("#experience .ui-list div").forEach((item) => {
-    item.addEventListener("click", () => {
-      const id = item.getAttribute("experience-id");
-      updateContent("experience", id);
+  document
+    .querySelectorAll("#experience .ui-list div")
+    .forEach((item, index) => {
+      item.addEventListener("click", () => {
+        const id = item.getAttribute("experience-id");
+        updateContent("experience", id);
+        // Actualizar el numero de la experiencia
+        const listIndex = document.querySelector("#experience .list-index p");
+        listIndex.textContent = `${index + 1} of 1`;
 
-      // reset el index de project/skill
-      document.querySelector("#projects .list-index p").textContent = "1 of 5";
-      document.querySelector("#skills-index p").textContent = "1 of 6";
+        // reset el index de project/skill
+        document.querySelector("#projects .list-index p").textContent =
+          "1 of 5";
+        document.querySelector("#skills-index p").textContent = "1 of 6";
+      });
     });
-  });
 
   //projectos
   document
@@ -33,8 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Actualizar el número del proyecto
         const listIndex = document.querySelector("#projects .list-index p");
         listIndex.textContent = `${index + 1} of 5`;
+
         // reset el index de skill
         document.querySelector("#skills-index p").textContent = "1 of 6";
+        // reset el index de experiencia (cuando haya mas)
+        //document.querySelector("#experience .list-index p").textContent =
+        //  "1 of 1";
       });
     });
 
@@ -50,28 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // reset el index de project
       document.querySelector("#projects .list-index p").textContent = "1 of 5";
+      // reset el index de experiencia (cuando haya mas)
+      //document.querySelector("#experience .list-index p").textContent =
+      //  "1 of 1";
     });
   });
+
   //cargar contenido
   async function loadContent(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return await response.text();
-    } catch (error) {
-      console.error("Could not load file: " + error);
-      return "<p>Content not found.</p>";
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    return await response.text();
   }
   //actualizar contenido
   async function updateContent(type, id) {
     if (contentInfo[type] && contentInfo[type][id]) {
       const content = await loadContent(contentInfo[type][id]);
       contentContainer.innerHTML = content;
-    } else {
-      contentContainer.innerHTML = "<p>Content not found.</p>";
     }
   }
   contentContainer.classList.remove("hidden");
