@@ -97,8 +97,8 @@ const contentInfo = {
     project5: "/../data/project/project5.html",
   },
   skills: {
-    skills1: "../data/skills-tools/html.html",
-    skills2: "../data/skills-tools/css.html",
+    skills1: "/../data/skills-tools/html.html",
+    skills2: "/../data/skills-tools/css.html",
     skills3: "../data/skills-tools/javascript.html",
     skills4: "../data/skills-tools/php.html",
     skills5: "../data/skills-tools/python.html",
