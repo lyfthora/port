@@ -95,21 +95,21 @@ document.addEventListener("DOMContentLoaded", () => {
 //info del contenido
 const contentInfo = {
   experience: {
-    experience1: "port/data/experience/experience1.html",
+    experience1: "/port/data/experience/experience1.html",
   },
   project: {
     project1: "/port/data/project/project1.html",
-    project2: "../data/project/project2.html",
-    project3: "/data/project/project3.html",
-    project4: "/data/project/project4.html",
-    project5: "/data/project/project5.html",
+    project2: "/port/data/project/project2.html",
+    project3: "/port/data/project/project3.html",
+    project4: "/port/data/project/project4.html",
+    project5: "/port/data/project/project5.html",
   },
   skills: {
-    skills1: "/data/skills-tools/html.html",
-    skills2: "/data/skills-tools/css.html",
-    skills3: "/data/skills-tools/javascript.html",
-    skills4: "/data/skills-tools/php.html",
-    skills5: "/data/skills-tools/python.html",
-    skills6: "/data/skills-tools/react.html",
+    skills1: "/port/data/skills-tools/html.html",
+    skills2: "/port/data/skills-tools/css.html",
+    skills3: "/port/data/skills-tools/javascript.html",
+    skills4: "/port/data/skills-tools/php.html",
+    skills5: "/port/data/skills-tools/python.html",
+    skills6: "/port/data/skills-tools/react.html",
   },
 };
