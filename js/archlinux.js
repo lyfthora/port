@@ -77,8 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
   //actualizar contenido
   async function updateContent(type, id) {
     if (contentInfo[type] && contentInfo[type][id]) {
-      const content = await loadContent(contentInfo[type][id]);
-      contentContainer.innerHTML = content;
+      try {
+        const content = await loadContent(contentInfo[type][id]);
+        contentContainer.innerHTML = content;
+      } catch (error) {
+        console.error(`Failed to load content for ${type} ${id}:`, error);
+        contentContainer.innerHTML = `<p>Failed to load content. Please try again later.</p>`;
+      }
+    } else {
+      console.error(`No content info found for ${type} ${id}`);
+      contentContainer.innerHTML = `<p>Content not found.</p>`;
     }
   }
   contentContainer.classList.remove("hidden");
@@ -90,18 +98,18 @@ const contentInfo = {
     experience1: "/data/experience/experience1.html",
   },
   project: {
-    project1: "\\data\\project\\project1.html",
-    project2: "..\\data\\project\\project2.html",
+    project1: "/data/project/project1.html",
+    project2: "/data/project/project2.html",
     project3: "/data/project/project3.html",
-    project4: "/../data/project/project4.html",
-    project5: "/../data/project/project5.html",
+    project4: "/data/project/project4.html",
+    project5: "/data/project/project5.html",
   },
   skills: {
-    skills1: "/../data/skills-tools/html.html",
-    skills2: "/../data/skills-tools/css.html",
-    skills3: "../data/skills-tools/javascript.html",
-    skills4: "../data/skills-tools/php.html",
-    skills5: "../data/skills-tools/python.html",
-    skills6: "../data/skills-tools/react.html",
+    skills1: "/data/skills-tools/html.html",
+    skills2: "/data/skills-tools/css.html",
+    skills3: "/data/skills-tools/javascript.html",
+    skills4: "/data/skills-tools/php.html",
+    skills5: "/data/skills-tools/python.html",
+    skills6: "/data/skills-tools/react.html",
   },
 };
