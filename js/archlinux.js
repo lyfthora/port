@@ -10,25 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const targetLanguage = "ES";
 
     async function translateText(text) {
-      const response = await fetch("/translate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          text: text,
-          target_lang: targetLanguage,
-        }),
-      });
+      try {
+        const response = await fetch(
+          "https://api-free.deepl.com/v2/translate",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              auth_key: apiKey,
+              text: text,
+              target_lang: targetLanguage,
+            }),
+          }
+        );
 
-      if (!response.ok) {
-        throw new Error("Error en la solicitud de traducción");
+        if (!response.ok) {
+          throw new Error(
+            `Error en la solicitud de traducción: ${response.statusText}`
+          );
+        }
+
+        const data = await response.json();
+        return data.translations[0].text;
+      } catch (error) {
+        console.error("Error en la función translateText:", error);
+        throw error;
       }
-
-      const data = await response.json();
-      return data.translations[0].text;
     }
 
     async function translateContent() {
       const elements = contentContainer.querySelectorAll("p");
+
       for (const element of elements) {
         const htmlContent = element.innerHTML;
         const div = document.createElement("div");
@@ -42,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
           false
         );
         let node;
+
         while ((node = walker.nextNode())) {
           if (node.nodeValue.trim()) {
             textNodes.push(node);
@@ -49,11 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const textsToTranslate = textNodes.map((node) => node.nodeValue.trim());
+
+        // Obtener traducciones en paralelo
         const translations = await Promise.all(
           textsToTranslate.map((text) => translateText(text))
         );
 
         let translationIndex = 0;
+
         function replaceTextNodes(node) {
           if (node.nodeType === Node.TEXT_NODE) {
             if (translationIndex < translations.length) {
@@ -70,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Array.from(node.childNodes).forEach(replaceTextNodes);
           }
         }
+
         replaceTextNodes(div);
         element.innerHTML = div.innerHTML;
       }
