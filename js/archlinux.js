@@ -7,12 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   translateButton.addEventListener("click", async () => {
-    const targetLanguage = "ES";
-
     async function translateText(text) {
       try {
         const response = await fetch("http://localhost:3000/translate", {
-          // Cambia esto por la URL de tu servidor en producción
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
