@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 app.post("/translate", async (req, res) => {
   const { text, target_lang } = req.body;
+
   try {
     const response = await fetch("https://api-free.deepl.com/v2/translate", {
       method: "POST",
@@ -19,14 +20,20 @@ app.post("/translate", async (req, res) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        auth_key: process.env.DEEPL_API_KEY,
+        auth_key: process.env.API_KEY,
         text: text,
         target_lang: target_lang,
       }),
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     res.json(data);
   } catch (error) {
+    console.error("Error en la solicitud de traducción:", error);
     res.status(500).json({ error: "Error al traducir el texto" });
   }
 });
