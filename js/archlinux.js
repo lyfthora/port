@@ -2,6 +2,88 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("main-content");
   const originalContent = contentContainer.innerHTML;
 
+  const translateButton = document.getElementById("translateBtn");
+  if (!translateButton) {
+    return;
+  }
+
+  translateButton.addEventListener("click", async () => {
+    const apiKey = "e592319c-7bf9-43e0-9e78-e2dbb23860b2:fx"; // Reemplaza con tu clave de API de DeepL
+    const targetLanguage = "ES"; // Idioma al que quieres traducir (en este caso, español)
+
+    async function translateText(text) {
+      const response = await fetch("https://api-free.deepl.com/v2/translate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          auth_key: apiKey,
+          text: text,
+          target_lang: targetLanguage,
+        }),
+      });
+
+      const data = await response.json();
+      return data.translations[0].text;
+    }
+
+    async function translateContent() {
+      const elements = contentContainer.querySelectorAll("p");
+      for (const element of elements) {
+        // Extraer el HTML del párrafo y traducir el texto visible
+        const htmlContent = element.innerHTML;
+        const div = document.createElement("div");
+        div.innerHTML = htmlContent;
+
+        const textNodes = [];
+        const walker = document.createTreeWalker(
+          div,
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+        let node;
+        while ((node = walker.nextNode())) {
+          if (node.nodeValue.trim()) {
+            textNodes.push(node);
+          }
+        }
+
+        const textsToTranslate = textNodes.map((node) => node.nodeValue.trim());
+        const translations = await Promise.all(
+          textsToTranslate.map((text) => translateText(text))
+        );
+
+        // Reemplazar los textos en el HTML con las traducciones, añadiendo espacios alrededor de los <span> y antes del <a>
+        let translationIndex = 0;
+        function replaceTextNodes(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            if (translationIndex < translations.length) {
+              node.nodeValue = translations[translationIndex];
+              translationIndex++;
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.tagName === "SPAN") {
+              node.insertAdjacentText("beforebegin", " "); // Agregar espacio antes del <span>
+              node.insertAdjacentText("afterend", " "); // Agregar espacio después del </span>
+            } else if (node.tagName === "A") {
+              node.insertAdjacentText("beforebegin", " "); // Agregar espacio antes del <a>
+            }
+            Array.from(node.childNodes).forEach(replaceTextNodes);
+          }
+        }
+        replaceTextNodes(div);
+
+        // Reemplazar el contenido del párrafo original con el HTML traducido
+        element.innerHTML = div.innerHTML;
+      }
+    }
+
+    // Traduce el contenido
+    await translateContent();
+  });
+
   //volver al contenido original
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -87,21 +169,21 @@ document.addEventListener("DOMContentLoaded", () => {
 //info del contenido
 const contentInfo = {
   experience: {
-    experience1: "/port/data/experience/experience1.html",
+    experience1: "./data/experience/experience1.html",
   },
   project: {
-    project1: "/port/data/project/project1.html",
-    project2: "/port/data/project/project2.html",
-    project3: "/port/data/project/project3.html",
-    project4: "/port/data/project/project4.html",
-    project5: "/port/data/project/project5.html",
+    project1: "./data/project/project1.html",
+    project2: "./data/project/project2.html",
+    project3: "./data/project/project3.html",
+    project4: "./data/project/project4.html",
+    project5: "./data/project/project5.html",
   },
   skills: {
-    skills1: "/port/data/skills-tools/html.html",
-    skills2: "/port/data/skills-tools/css.html",
-    skills3: "/port/data/skills-tools/javascript.html",
-    skills4: "/port/data/skills-tools/php.html",
-    skills5: "/port/data/skills-tools/python.html",
-    skills6: "/port/data/skills-tools/react.html",
+    skills1: "./data/skills-tools/html.html",
+    skills2: "./data/skills-tools/css.html",
+    skills3: "./data/skills-tools/javascript.html",
+    skills4: "./data/skills-tools/php.html",
+    skills5: "./data/skills-tools/python.html",
+    skills6: "./data/skills-tools/react.html",
   },
 };
