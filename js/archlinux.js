@@ -8,17 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   translateButton.addEventListener("click", async () => {
-    const apiKey = "e592319c-7bf9-43e0-9e78-e2dbb23860b2:fx"; // Reemplaza con tu clave de API de DeepL
-    const targetLanguage = "ES"; // Idioma al que quieres traducir (en este caso, español)
+    const targetLanguage = "ES"; // Idioma  traducir
 
     async function translateText(text) {
+      // Llama al backend
       const response = await fetch("https://api-free.deepl.com/v2/translate", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams({
-          auth_key: apiKey,
+        body: JSON.stringify({
           text: text,
           target_lang: targetLanguage,
         }),
