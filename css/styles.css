@@ -200,6 +200,9 @@ svg {
   padding-top: 0.2rem;
   height: 33%;
 }
+.infoTranslate {
+  padding-left: 12rem;
+}
 
 #left-section .container#experience:hover:not(.selected-frame) {
   border-color: #58a6ff;
@@ -406,6 +409,9 @@ div.selected-frame > ::-webkit-scrollbar-thumb {
   #projects.container,
   #skills.container,
   #footer-help.footer-item {
+    display: none;
+  }
+  .infoTranslate {
     display: none;
   }
   #main-content.container.h-fill {
