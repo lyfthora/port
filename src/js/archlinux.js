@@ -150,20 +150,20 @@ document.addEventListener("DOMContentLoaded", () => {
   contentContainer.classList.remove("hidden");
 });
 const contentInfo = {
-  experience: { experience1: "./data/experience/experience1.html" },
+  experience: { experience1: "src/data/experience/experience1.html" },
   project: {
-    project1: "./data/project/project1.html",
-    project2: "./data/project/project2.html",
-    project3: "./data/project/project3.html",
-    project4: "./data/project/project4.html",
-    project5: "./data/project/project5.html",
+    project1: "src/data/project/project1.html",
+    project2: "src/data/project/project2.html",
+    project3: "src/data/project/project3.html",
+    project4: "src/data/project/project4.html",
+    project5: "src/data/project/project5.html",
   },
   skills: {
-    skills1: "./data/skills-tools/html.html",
-    skills2: "./data/skills-tools/css.html",
-    skills3: "./data/skills-tools/javascript.html",
-    skills4: "./data/skills-tools/php.html",
-    skills5: "./data/skills-tools/python.html",
-    skills6: "./data/skills-tools/react.html",
+    skills1: "src/data/skills-tools/html.html",
+    skills2: "src/data/skills-tools/css.html",
+    skills3: "src/data/skills-tools/javascript.html",
+    skills4: "src/data/skills-tools/php.html",
+    skills5: "../data/skills-tools/python.html",
+    skills6: "../data/skills-tools/react.html",
   },
 };
