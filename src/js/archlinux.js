@@ -163,7 +163,7 @@ const contentInfo = {
     skills2: "src/data/skills-tools/css.html",
     skills3: "src/data/skills-tools/javascript.html",
     skills4: "src/data/skills-tools/php.html",
-    skills5: "../data/skills-tools/python.html",
-    skills6: "../data/skills-tools/react.html",
+    skills5: "src/data/skills-tools/python.html",
+    skills6: "src/data/skills-tools/react.html",
   },
 };
