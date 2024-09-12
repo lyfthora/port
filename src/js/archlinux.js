@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   translateButton.addEventListener("click", async () => {
     async function translateText(text) {
+      console.log("Sending translation request for:", text);
       try {
-        const response = await fetch("http://localhost:3000/translate", {
+        const response = await fetch("http://localhost:3000/api/translate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -18,14 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
           }),
         });
 
+        console.log("Response status:", response.status);
+        console.log("Response headers:", response.headers);
+
+        const responseText = await response.text();
+        console.log("Response text:", responseText);
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(
+            `HTTP error! status: ${response.status}, body: ${responseText}`
+          );
         }
 
-        const data = await response.json();
+        const data = JSON.parse(responseText);
+        console.log("Received translation:", data);
         return data.translations[0].text;
       } catch (error) {
-        console.error("Error en la solicitud de traducción:", error);
+        console.error("Error in translateText:", error);
         throw error;
       }
     }
