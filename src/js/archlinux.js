@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function translateText(text) {
       console.log("Sending translation request for:", text);
       try {
-        const response = await fetch("http://localhost:3000/api/translate", {
+        const response = await fetch("https://port-b68e.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
