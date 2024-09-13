@@ -10,14 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     async function translateText(text) {
       console.log("Sending translation request for:", text);
       try {
-        const response = await fetch("http://localhost:3000/api/translate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            text: text,
-            target_lang: "ES",
-          }),
-        });
+        const response = await fetch(
+          "https://brayiann.github.io/port/api/translate",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text: text,
+              target_lang: "ES",
+            }),
+          }
+        );
 
         console.log("Response status:", response.status);
         console.log("Response headers:", response.headers);
