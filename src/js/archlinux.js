@@ -1,73 +1,207 @@
 let isSpanish = false;
-let originalContent;
+const originalContent = {};
+
 document.addEventListener("DOMContentLoaded", () => {
-  const contentContainer = document.getElementById("main-content");
-  originalContent = contentContainer.innerHTML;
+  // Guardar el contenido original de cada sección
+  ["main-content", "experience", "projects", "skills"].forEach((id) => {
+    const element = document.getElementById(id);
+    if (element) originalContent[id] = element.innerHTML;
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      contentContainer.innerHTML = originalContent;
-      contentContainer.classList.remove("hidden");
+      document.getElementById("main-content").innerHTML =
+        originalContent["main-content"];
     }
   });
-
-  document
-    .querySelectorAll("#experience .ui-list div")
-    .forEach((item, index) => {
-      item.addEventListener("click", () => {
-        const id = item.getAttribute("experience-id");
-        updateContent("experience", id);
-        updateIndices(index + 1, 1, 1, 5, 1, 6);
-      });
-    });
-
-  document
-    .querySelectorAll("#projects .ui-list > div")
-    .forEach((item, index) => {
-      item.addEventListener("click", () => {
-        const id = item.getAttribute("project-id");
-        updateContent("project", id);
-        updateIndices(1, 1, index + 1, 5, 1, 6);
-      });
-    });
-
-  document.querySelectorAll("#skills .ui-list > div").forEach((item, index) => {
-    item.addEventListener("click", () => {
-      const id = item.getAttribute("skills-id");
-      updateContent("skills", id);
-      updateIndices(1, 1, 1, 5, index + 1, 6);
-    });
-  });
-
-  async function loadContent(url) {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.text();
-  }
-
-  async function updateContent(type, id) {
-    const currentContentInfo = isSpanish ? contentInfoES : contentInfo;
-    if (currentContentInfo[type] && currentContentInfo[type][id]) {
-      const content = await loadContent(currentContentInfo[type][id]);
-      contentContainer.innerHTML = content;
-    }
-  }
-
-  contentContainer.classList.remove("hidden");
 
   const translateBtn = document.getElementById("translateBtn");
-  translateBtn.addEventListener("click", async () => {
-    isSpanish = !isSpanish;
-    if (isSpanish) {
-      await translateContent();
-    } else {
-      restoreOriginalContent();
-    }
-    updateButtonText();
-  });
+  translateBtn.addEventListener("click", handleTranslation);
+
+  assignEventListeners();
 });
+
+function handleTranslation() {
+  console.log("Botón clickeado");
+  isSpanish = !isSpanish;
+  console.log("isSpanish:", isSpanish);
+
+  if (isSpanish) {
+    console.log("Traduciendo al español");
+    translateContent();
+  } else {
+    console.log("Restaurando al inglés");
+    restoreOriginalContent();
+  }
+
+  updateButtonText();
+  assignEventListeners();
+  console.log("Traducción completada");
+}
+
+function translateContent() {
+  translateGeneralContent();
+  updateAllIndices();
+}
+
+function restoreOriginalContent() {
+  ["main-content", "experience", "projects", "skills"].forEach((id) => {
+    const element = document.getElementById(id);
+    if (element) element.innerHTML = originalContent[id];
+  });
+  updateAllIndices();
+}
+
+function translateGeneralContent() {
+  const translations = {
+    Home: "Inicio",
+    Experience: "Experiencia",
+    Projects: "Proyectos",
+    "Skills - Tools": "Habilidades - Herramientas",
+    "Hello! I'm": "¡Hola! Soy",
+    "a passionate Front-End developer from Spain :)":
+      "un apasionado desarrollador Front-End de España :)",
+    "Another great passion of mine is back-end development, where I like to learn about designing and optimizing server-side logic that supports those front-end features.":
+      "Otra gran pasión mía es el desarrollo back-end, donde me gusta aprender sobre el diseño y la optimización de la lógica del lado del servidor que respalda esas características del front-end.",
+    "I'm a passionate developer, always looking for new challenges and opportunities to learn.":
+      "Soy un desarrollador apasionado, siempre buscando nuevos desafíos y oportunidades para aprender.",
+    "Nowadays, you can find me on": "Actualmente, puedes encontrarme en",
+    "You can always check out my work on": "Siempre puedes ver mi trabajo en",
+    "You can find my resumé over here =>":
+      "Puedes encontrar mi currículum aquí =>",
+    resumé: "currículum",
+    Press: "Presiona",
+    "to return to main section": "para volver a la sección principal",
+    Click: "Haz clic en",
+    "if you want translate all content":
+      "si quieres traducir todo el contenido",
+    // Añade más traducciones según sea necesario
+  };
+
+  document.querySelectorAll("p, span, a, h1, h2, div").forEach((element) => {
+    if (
+      element.childNodes.length === 1 &&
+      element.childNodes[0].nodeType === Node.TEXT_NODE
+    ) {
+      translateElement(element, translations);
+    } else {
+      element.childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          translateElement(node, translations);
+        }
+      });
+    }
+  });
+}
+
+function translateElement(element, translations) {
+  const text = element.textContent.trim();
+  const translation = translations[text];
+  if (translation) {
+    element.textContent = translation;
+  }
+}
+
+function updateButtonText() {
+  const translateBtn = document.getElementById("translateBtn");
+  if (translateBtn) {
+    translateBtn.innerHTML = `<span class="text-orange" style="cursor: pointer;">"${
+      isSpanish ? "EN" : "ES"
+    }"</span>`;
+  }
+}
+
+function updateIndices(
+  expCurrent,
+  expTotal,
+  projCurrent,
+  projTotal,
+  skillsCurrent,
+  skillsTotal
+) {
+  const experienceIndex = document.querySelector("#experience .list-index p");
+  const projectsIndex = document.querySelector("#projects .list-index p");
+  const skillsIndex = document.querySelector("#skills-index p");
+
+  if (experienceIndex)
+    experienceIndex.textContent = `${expCurrent} ${
+      isSpanish ? "de" : "of"
+    } ${expTotal}`;
+  if (projectsIndex)
+    projectsIndex.textContent = `${projCurrent} ${
+      isSpanish ? "de" : "of"
+    } ${projTotal}`;
+  if (skillsIndex)
+    skillsIndex.textContent = `${skillsCurrent} ${
+      isSpanish ? "de" : "of"
+    } ${skillsTotal}`;
+}
+
+function updateAllIndices() {
+  updateIndices(1, 1, 1, 5, 1, 6);
+}
+
+function assignEventListeners() {
+  ["experience", "projects", "skills"].forEach((section) => {
+    document
+      .querySelectorAll(`#${section} .ui-list > div`)
+      .forEach((item, index) => {
+        item.removeEventListener("click", item.clickHandler);
+        item.clickHandler = () => {
+          const id = item.getAttribute(`${section.slice(0, -1)}-id`);
+          if (id) {
+            updateContent(section.slice(0, -1), id);
+            updateIndices(
+              section === "experience" ? index + 1 : 1,
+              section === "experience" ? 1 : 5,
+              section === "projects" ? index + 1 : 1,
+              5,
+              section === "skills" ? index + 1 : 1,
+              6
+            );
+          } else {
+            console.warn(
+              `Atributo ${section.slice(0, -1)}-id no encontrado en:`,
+              item
+            );
+          }
+        };
+        item.addEventListener("click", item.clickHandler);
+      });
+  });
+}
+
+async function updateContent(type, id) {
+  console.log(`Iniciando actualización de contenido: ${type}, ${id}`);
+  const url = isSpanish ? contentInfoES[type][id] : contentInfo[type][id];
+  if (url) {
+    try {
+      const content = await loadContent(url);
+      const contentContainer = document.getElementById("main-content");
+      if (contentContainer) {
+        contentContainer.innerHTML = content;
+        contentContainer.classList.remove("hidden");
+        console.log(`Contenido actualizado: ${type}, ${id}`);
+        if (isSpanish) translateGeneralContent();
+        assignEventListeners();
+      } else {
+        console.error("Contenedor de contenido no encontrado");
+      }
+    } catch (error) {
+      console.error(`Error al cargar el contenido: ${error}`);
+    }
+  } else {
+    console.warn(`URL no encontrada para tipo: ${type}, id: ${id}`);
+  }
+}
+
+async function loadContent(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return await response.text();
+}
 
 const contentInfo = {
   experience: { experience1: "src/data/experience/experience1.html" },
@@ -106,143 +240,3 @@ const contentInfoES = {
     skills6: "src/data_ES/habilidades/react.html",
   },
 };
-
-async function translateContent() {
-  const contentContainer = document.getElementById("main-content");
-  const currentContent = contentContainer.innerHTML;
-
-  // que contenido esta actualmente mostrandose
-  let currentType, currentId;
-  const currentContentInfo = contentInfoES; // Siempre usamos contentInfoES para traducir a español
-  for (const [type, contents] of Object.entries(currentContentInfo)) {
-    for (const [id, url] of Object.entries(contents)) {
-      if (currentContent.includes(url)) {
-        currentType = type;
-        currentId = id;
-        break;
-      }
-    }
-    if (currentType) break;
-  }
-
-  if (currentType && currentId) {
-    // Si se encuentra contenido actual, carga la versión traducida
-    await updateContent(currentType, currentId);
-  } else {
-    // Si no se encuentra contenido específico, traduce el contenido general
-    translateGeneralContent();
-  }
-
-  // Actualizar los índices
-  updateAllIndices();
-}
-function translateGeneralContent() {
-  const translations = {
-    Home: "Inicio",
-    Experience: "Experiencia",
-    Projects: "Proyectos",
-    "Skills - Tools": "Habilidades - Herramientas",
-    "Hello! I'm": "¡Hola! Soy",
-    "a passionate Front-End developer from Spain :)":
-      "un apasionado desarrollador Front-End de España :)",
-    "Hi, I'm": "Hola, soy ",
-    A: "Un",
-    "Front-end": "desarrollador",
-    developer: "asdassd",
-    "Another great passion of mine is back-end development, where I like to learn about designing and optimizing server-side logic that supports those front-end features.":
-      "Otra gran pasión mía es el desarrollo back-end, donde me gusta aprender sobre el diseño y la optimización de la lógica del lado del servidor que soporta esas características del front-end.",
-    "I'm a passionate developer, always looking for new challenges and opportunities to learn.":
-      "Soy un apasionado desarrollador, siempre buscando nuevos desafíos y oportunidades para aprender.",
-    "Nowadays, you can find me on": "Actualmente, puedes encontrarme en",
-    "You can always check out my work on": "Siempre puedes ver mi trabajo en",
-    "You can find my resumé over here =>":
-      "Puedes encontrar mi currículum aquí =>",
-    resumé: "currículum",
-    Press: "Presiona",
-    "to return to main section": "para volver a la sección principal",
-    Click: "Haz clic en",
-    "if you want translate all content":
-      "si quieres traducir todo el contenido",
-  };
-
-  document.querySelectorAll("p, span, a, h1, h2").forEach((element) => {
-    if (
-      element.childNodes.length === 1 &&
-      element.childNodes[0].nodeType === Node.TEXT_NODE
-    ) {
-      translateElement(element, translations);
-    } else {
-      element.childNodes.forEach((node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          translateElement(node, translations);
-        } else if (
-          node.nodeType === Node.ELEMENT_NODE &&
-          node.tagName === "SPAN"
-        ) {
-          node.insertAdjacentText("beforebegin", " ");
-          node.insertAdjacentText("afterend", " ");
-        } else if (
-          node.nodeType === Node.ELEMENT_NODE &&
-          node.tagName === "A"
-        ) {
-          node.insertAdjacentText("beforebegin", " ");
-        }
-      });
-    }
-  });
-}
-
-function translateElement(element, translations) {
-  const text = element.textContent.trim();
-  const translationEntry = Object.entries(translations).find(
-    ([key, value]) =>
-      key.replace(/^"|"$/g, "").toLowerCase() === text.toLowerCase()
-  );
-
-  if (translationEntry) {
-    element.textContent = translationEntry[1];
-  }
-}
-
-function restoreOriginalContent() {
-  const contentContainer = document.getElementById("main-content");
-  contentContainer.innerHTML = originalContent;
-  updateAllIndices();
-}
-
-function updateButtonText() {
-  const translateBtn = document.getElementById("translateBtn");
-  translateBtn.innerHTML = `<span class="text-orange" style="cursor: pointer;">"${
-    isSpanish ? "EN" : "ES"
-  }"</span>`;
-}
-
-function updateIndices(
-  expCurrent,
-  expTotal,
-  projCurrent,
-  projTotal,
-  skillsCurrent,
-  skillsTotal
-) {
-  const experienceIndex = document.querySelector("#experience .list-index p");
-  const projectsIndex = document.querySelector("#projects .list-index p");
-  const skillsIndex = document.querySelector("#skills-index p");
-
-  if (experienceIndex)
-    experienceIndex.textContent = `${expCurrent} ${
-      isSpanish ? "de" : "of"
-    } ${expTotal}`;
-  if (projectsIndex)
-    projectsIndex.textContent = `${projCurrent} ${
-      isSpanish ? "de" : "of"
-    } ${projTotal}`;
-  if (skillsIndex)
-    skillsIndex.textContent = `${skillsCurrent} ${
-      isSpanish ? "de" : "of"
-    } ${skillsTotal}`;
-}
-
-function updateAllIndices() {
-  updateIndices(1, 1, 1, 5, 1, 6);
-}
