@@ -1,0 +1,73 @@
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-pink">Python</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        <p>Python es un
+          <span class="text-orange">lenguaje de programación de alto nivel</span> conocido por su
+          <span class="text-blue">legibilidad</span> y
+          <span class="text-pink">versatilidad</span>. A diferencia de
+          <span class="text-orange">HTML</span> y
+          <span class="text-orange">CSS</span>, que se usan para la estructura y el estilo del contenido web, Python es un
+          <span class="text-blue">lenguaje de propósito general</span> que se puede utilizar para
+          <span class="text-pink">desarrollo web</span>,
+          <span class="text-blue">análisis de datos</span>,
+          <span class="text-orange">inteligencia artificial</span>, y más.</p>
+        <div>
+          <p>Al usar Python, los desarrolladores pueden escribir
+            <span class="text-blue">código eficiente y limpio</span> que soporta una amplia gama de paradigmas de programación, incluyendo
+            <span class="text-pink">orientado a objetos</span>,
+            <span class="text-blue">funcional</span>, y
+            <span class="text-orange">programación procedimental</span>. Esto permite la creación de software
+            <span class="text-pink">escalable</span> y
+            <span class="text-blue">mantenible</span>.</p>
+          <div>
+            <p>Python también soporta
+              <span class="text-blue">extensas bibliotecas y frameworks</span> como
+              <span class="text-pink">Django</span>,
+              <span class="text-orange">Flask</span>, y
+              <span class="text-blue">NumPy</span>, facilitando el
+              <span class="text-pink">desarrollo rápido</span> y el
+              <span class="text-orange">procesamiento de datos poderoso</span>. Esto convierte a Python en una
+              <span class="text-blue">elección ideal</span> para una variedad de
+              <span class="text-pink">aplicaciones</span> y
+              <span class="text-orange">proyectos</span>.</p>
+          </div>
+        </div>
+      </div>
+
+        <pre>
+            <code class="html">
+# Paths
+<span class="text-orange">BDVECTORIAL_PATH</span> = <span class="text-pink">r"db"</span>
+<span class="text-orange">PDF_PATH</span> = <span class="text-pink">r"pdf"</span>
+
+# Cargar la web
+<span class="text-blue">#loader</span> = <span class="text-blue">WebBaseLoader</span>(<span class="text-pink">""</span>)
+<span class="text-blue">#pagina</span> = <span class="text-blue">loader.load()</span>
+
+# Documentos PDF y DOCX de la carpeta
+<span class="text-orange">cargador_de_pdfs</span> = <span class="text-blue">DirectoryLoader</span>(<span class="text-orange">PDF_PATH</span>, glob=<span class="text-pink">"./*.pdf"</span>, loader_cls=<span class="text-blue">PyPDFLoader</span>)
+<span class="text-orange">cargador_de_word</span> = <span class="text-blue">DirectoryLoader</span>(<span class="text-orange">PDF_PATH</span>, glob=<span class="text-pink">"./*.docx"</span>)
+<span class="text-orange">documentos</span> = <span class="text-orange">cargador_de_pdfs.load()</span> + <span class="text-orange">cargador_de_word.load()</span>
+<span class="text-orange">text_splitter</span> = <span class="text-blue">RecursiveCharacterTextSplitter</span>(
+chunk_size=<span class="text-pink">300</span>,
+chunk_overlap=<span class="text-pink">70</span>,
+length_function=<span class="text-blue">len</span>,
+is_separator_regex=<span class="text-pink">False</span>,
+)
+<span class="text-orange">chunks</span> = <span class="text-orange">text_splitter.split_documents(documentos)</span>
+<span class="text-orange">print</span>(<span class="text-pink">f"Se dividieron {len(documentos)} Paginas en {len(chunks)} fragmentos."</span>)
+<span class="text-orange">embedding</span> = <span class="text-blue">OpenAIEmbeddings</span>(model=<span class="text-pink">"text-embedding-ada-002"</span>)
+<span class="text-orange">chroma_client</span> = <span class="text-blue">chromadb.Client</span>()
+<span class="text-orange">print</span>(<span class="text-pink">"Todo ejecutado correctamente"</span>)
+            </code>
+          </pre>
+      </div>
+    </div>
+  </div>
+</div>

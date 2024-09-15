@@ -1,0 +1,84 @@
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-orange">PHP</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        <p>
+          PHP es un
+          <span class="text-orange"
+            >lenguaje de scripts del lado del servidor</span
+          >
+          que permite a los desarrolladores crear contenido web
+          <span class="text-blue">dinámico e interactivo</span>. A diferencia de
+          <span class="text-orange">HTML</span> y
+          <span class="text-orange">CSS</span>, que se utilizan para la
+          estructura y el estilo, PHP es responsable de generar contenido
+          <span class="text-pink">dinámico</span> y de
+          <span class="text-blue">manejar la lógica del lado del servidor</span
+          >, como interactuar con bases de datos y procesar datos de
+          formularios.
+        </p>
+        <div>
+          <p>
+            Al usar PHP, los desarrolladores pueden incrustar
+            <span class="text-orange">scripts del lado del servidor</span>
+            dentro de HTML, lo que permite la
+            <span class="text-pink">generación dinámica</span> de contenido
+            basado en las interacciones del usuario y otras condiciones del
+            servidor. Esto facilita la creación de aplicaciones web
+            <span class="text-blue">personalizables</span> e
+            <span class="text-orange">interactivas</span> que pueden responder a
+            entradas del usuario y proporcionar experiencias personalizadas.
+          </p>
+          <div>
+            <p>
+              PHP también soporta la
+              <span class="text-blue">interacción con bases de datos</span> a
+              través de mecanismos como <span class="text-pink">MySQL</span> y
+              <span class="text-orange">PDO</span>, lo que permite la creación
+              de aplicaciones web
+              <span class="text-pink">basadas en datos</span> que pueden
+              recuperar, actualizar y almacenar información de manera eficiente.
+              Esto conduce a soluciones web
+              <span class="text-orange">dinámicas</span> y
+              <span class="text-blue">robustas</span>.
+            </p>
+          </div>
+        </div>
+        <pre>
+            <code class="html">
+<span class="text-pink">&lt;?php</span>
+session_start();
+include <span class="text-blue">'../db.php'</span>;
+if (!isset(<span class="text-blue">$_SESSION</span>[<span class="text-orange">'loggedin'</span>] ) || <span class="text-blue">$_SESSION</span>[<span class="text-orange">'loggedin'</span>] !== <span class="text-blue">true</span>) {
+header(<span class="text-blue">"Location: ../login/index.php"</span>);
+exit();
+}
+<span class="text-blue">$stmt</span> = <span class="text-blue">$conn</span>-&gt;prepare("
+<span class="text-pink">SELECT</span> p.<span class="text-orange">id</span>, p.<span class="text-orange">post_content</span>, p.<span class="text-orange">post_image</span>, p.<span class="text-orange">created_at</span>, u.<span class="text-orange">username</span>, u.<span class="text-orange">profile_picture</span>, 
+       <span class="text-pink">COUNT</span>(c.<span class="text-orange">id</span>) <span class="text-pink">AS</span> <span class="text-orange">comment_count</span>
+<span class="text-pink">FROM</span> <span class="text-orange">posts</span> p
+<span class="text-pink">JOIN</span> <span class="text-orange">usuarios</span> u <span class="text-pink">ON</span> p.<span class="text-orange">username</span> = u.<span class="text-orange">username</span>
+<span class="text-pink">LEFT JOIN</span> <span class="text-orange">comments</span> c <span class="text-pink">ON</span> p.<span class="text-orange">id</span> = c.<span class="text-orange">post_id</span>
+<span class="text-pink">GROUP BY</span> p.<span class="text-orange">id</span>
+<span class="text-pink">ORDER BY</span> p.<span class="text-orange">id</span> <span class="text-pink">DESC</span>
+");
+<span class="text-blue">$stmt</span>-&gt;execute();
+<span class="text-blue">$result</span> = <span class="text-blue">$stmt</span>-&gt;get_result();
+<span class="text-blue">$posts</span> = [];
+while (<span class="text-blue">$row</span> = <span class="text-blue">$result</span>-&gt;fetch_assoc()) {
+<span class="text-blue">$posts</span>[] = <span class="text-blue">$row</span>;
+}
+<span class="text-blue">$stmt</span>-&gt;close();
+<span class="text-blue">$conn</span>-&gt;close();
+<span class="text-pink">?&gt;</span>
+            </code>
+          </pre>
+      </div>
+    </div>
+  </div>
+</div>

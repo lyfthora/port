@@ -1,0 +1,81 @@
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-blue">JavaScript</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        <p>
+          JavaScript es un
+          <span class="text-orange">lenguaje de programación</span> que permite
+          a los desarrolladores crear contenido web
+          <span class="text-blue">interactivo y dinámico</span>. A diferencia de
+          <span class="text-orange">HTML</span> y
+          <span class="text-orange">CSS</span>, que se usan para la estructura y
+          el estilo, JavaScript es responsable de hacer que las páginas web sean
+          <span class="text-pink">funcionales</span> al habilitar elementos
+          <span class="text-blue">comportamentales</span>, como el manejo de
+          eventos, la validación de formularios y las actualizaciones dinámicas.
+        </p>
+        <div>
+          <p>
+            Al usar JavaScript, los desarrolladores pueden manipular el
+            <span class="text-orange"
+              >Modelo de Objetos del Documento (DOM)</span
+            >, lo que permite la actualización de contenido en
+            <span class="text-pink">tiempo real</span>, la creación de
+            animaciones y características interactivas. Esto hace que los sitios
+            web sean más <span class="text-blue">atractivos</span> y mejora la
+            <span class="text-blue">experiencia general</span>.
+          </p>
+
+          <div>
+            <p>
+              JavaScript también soporta la
+              <span class="text-blue">programación asincrónica</span> a través
+              de mecanismos como <span class="text-pink">AJAX</span> y
+              <span class="text-orange">Promises</span>, lo que permite la
+              creación de aplicaciones web
+              <span class="text-pink">responsivas</span> que pueden recuperar
+              datos de servidores sin recargar la página. Esto conduce a
+              interacciones web <span class="text-orange">más rápidas</span> y
+              <span class="text-blue">más eficientes</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <pre>
+            <code class="html">
+&lt;<span class="text-orange">script</span>&gt;
+<span class="text-pink">document</span>.addEventListener(<span class="text-blue">"DOMContentLoaded"</span>, () =&gt; {
+const contentContainer = <span class="text-pink">document</span>.getElementById(<span class="text-blue">"main-content"</span>);
+
+<span class="text-pink">document</span>.<span class="text-pink">querySelectorAll</span>(<span class="text-blue">"#experience .ui-list div"</span>).forEach((item) =&gt; {
+item.addEventListener(<span class="text-blue">"click"</span>, () =&gt; {
+  const id = item.getAttribute(<span class="text-orange">"experience-id"</span>);
+  updateContent(<span class="text-blue">"experience"</span>, id);
+});
+});
+
+<span class="text-pink">document</span>.<span class="text-pink">querySelectorAll</span>(<span class="text-blue">"#projects .ui-list div"</span>).forEach((item) =&gt; {
+item.addEventListener(<span class="text-blue">"click"</span>, () =&gt; {
+  const id = item.getAttribute(<span class="text-orange">"project-id"</span>);
+  updateContent(<span class="text-blue">"project"</span>, id);
+});
+});
+
+<span class="text-pink">document</span>.<span class="text-pink">querySelectorAll</span>(<span class="text-blue">"#skills .ui-list div"</span>).forEach((item) =&gt; {
+item.addEventListener(<span class="text-blue">"click"</span>, () =&gt; {
+  const id = item.getAttribute(<span class="text-orange">"skills-id"</span>);
+  updateContent(<span class="text-blue">"skills"</span>, id);
+});
+});
+});
+&lt;/<span class="text-orange">script</span>&gt;
+           </code>
+          </pre>
+    </div>
+  </div>
+</div>

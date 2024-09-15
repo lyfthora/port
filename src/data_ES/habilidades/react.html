@@ -1,0 +1,59 @@
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-blue">React</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        <p>React es una <span class="text-orange">biblioteca de JavaScript</span> que permite
+          a los desarrolladores crear <span class="text-blue">interfaces de usuario dinámicas e interactivas</span> para aplicaciones web. A diferencia de los métodos tradicionales para construir interfaces de usuario, React permite a los desarrolladores crear componentes que pueden actualizar y renderizar de manera eficiente los elementos correctos cuando los datos cambian, lo que lo hace ideal para aplicaciones web
+          <span class="text-pink">dinámicas</span> y
+          <span class="text-blue">responsivas</span>.</p>
+        <div>
+          <p>Al usar React, los desarrolladores pueden crear
+            <span class="text-orange">arquitecturas basadas en componentes</span>, donde la interfaz de usuario se descompone en componentes más pequeños y reutilizables. Esto permite la creación de aplicaciones
+            <span class="text-pink">modulares</span> y
+            <span class="text-blue">mantenibles</span>, donde cada componente gestiona su propio estado y puede ser probado y actualizado de manera independiente.</p>
+          <div>
+           <p> React también soporta la
+            <span class="text-blue">programación declarativa</span>, lo que significa que los desarrolladores pueden describir cómo debería verse la interfaz de usuario en función del estado actual, y React gestionará eficientemente las actualizaciones. Esto conduce a aplicaciones web
+            <span class="text-orange">más rápidas</span> y
+            <span class="text-blue">más escalables</span>, con mejor rendimiento y un mantenimiento más sencillo.</p>
+          </div>
+        </div>
+      </div>
+        <pre>
+            <code class="html">
+import <span class="text-pink">React</span>, { <span class="text-blue">Fragment</span>, <span class="text-blue">useRef</span>, <span class="text-blue">useEffect</span>, <span class="text-blue">useState</span> } from "<span class="text-orange">react</span>";
+import <span class="text-blue">cover</span> from "<span class="text-orange">../../img/cover.jpg</span>";
+
+function <span class="text-blue">useOutsideClick</span>(<span class="text-orange">ref</span>, <span class="text-orange">callback</span>, <span class="text-orange">when</span>) {
+const <span class="text-blue">savedCallback</span> = <span class="text-blue">useRef</span>(<span class="text-orange">callback</span>);
+<span class="text-blue">useEffect</span>(() => {
+<span class="text-blue">savedCallback</span>.<span class="text-orange">current</span> = <span class="text-orange">callback</span>;
+});
+function <span class="text-blue">handler</span>(<span class="text-orange">e</span>) {
+if (<span class="text-orange">ref.current</span> && !<span class="text-orange">ref.current</span>.<span class="text-blue">contains</span>(<span class="text-orange">e.target</span>)) {
+  <span class="text-blue">savedCallback</span>.<span class="text-orange">current</span>();
+}
+}
+<span class="text-blue">useEffect</span>(() => {
+if (<span class="text-orange">when</span>) {
+  const <span class="text-blue">timeoutId</span> = setTimeout(() => {
+    <span class="text-orange">document.addEventListener</span>("click", <span class="text-blue">handler</span>);
+  }, 100);
+  return () => {
+    <span class="text-blue">clearTimeout</span>(<span class="text-orange">timeoutId</span>);
+    <span class="text-orange">document.removeEventListener</span>("click", <span class="text-blue">handler</span>);
+  };
+}
+}, [<span class="text-orange">when</span>]);
+}
+            </code>
+          </pre>
+      </div>
+    </div>
+  </div>
+</div>
