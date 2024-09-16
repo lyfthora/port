@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Guardar los textos originales
   document
-    .querySelectorAll(".translatable p, .title p, .list-index p")
+    .querySelectorAll(
+      ".translatable p, .title p, .list-index p, #home-section-paragraph"
+    )
     .forEach((element) => {
       originalTexts.set(element, element.innerHTML);
     });
@@ -45,6 +47,15 @@ function translateContent() {
   const mainContainer = document.getElementById("main-container");
   translateElement(mainContainer);
 
+  const homeSectionParagraph = document.getElementById(
+    "home-section-paragraph"
+  );
+  if (homeSectionParagraph) {
+    homeSectionParagraph.innerHTML = translateToSpanish(
+      homeSectionParagraph.innerHTML
+    );
+  }
+
   // Actualizar el contenido dinámico si está cargado
   const currentContent = document.querySelector(".container-content");
   if (currentContent) {
@@ -76,15 +87,28 @@ function restoreOriginalContent() {
   const contentContainer = document.getElementById("main-content");
   contentContainer.innerHTML = originalContent;
   contentContainer.classList.remove("hidden");
+
+  // Restaurar específicamente el contenido de #home-section-paragraph
+  const homeSectionParagraph = document.getElementById(
+    "home-section-paragraph"
+  );
+  if (homeSectionParagraph && originalTexts.has(homeSectionParagraph)) {
+    homeSectionParagraph.innerHTML = originalTexts.get(homeSectionParagraph);
+  }
+
   isSpanish = false;
   const translateButton = document.getElementById("translateBtn");
   translateButton.innerHTML = `<span class="text-orange" style="cursor: pointer;">"ES"</span>`;
-  assignEventListeners(); // Reasignar los event listeners después de restaurar el contenido
+  assignEventListeners();
 }
 
 function translateToSpanish(text) {
   const translations = {
+    "Hello! I'm": "Hola! Soy",
     "Hi, I'm": "Hola, soy",
+    // ",": ",",
+    ", a passionate Front-End developer from Spain":
+      ", un desarrollador Front-End apasionado de España",
     "A Front-end developer.": "Un desarrollador Front-end.",
     "Another great passion": "Otra gran pasión",
     "mine is back-end development, where I like to learn about designing and optimizing server-side logic that supports those front-end features.":
@@ -95,9 +119,8 @@ function translateToSpanish(text) {
     "You can always check out my work on": "Siempre puedes ver mi trabajo en",
     "You can find my resumé over here =>":
       "Puedes encontrar mi currículum aquí =>",
-    resumé: "Currículum",
   };
-
+  // toma el texto(translations) y lo remplaza por el texto en español / g = global / i = ignora mayusculas y minusculas
   Object.keys(translations).forEach((key) => {
     const regex = new RegExp(key, "gi");
     text = text.replace(regex, translations[key]);
