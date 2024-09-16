@@ -84,11 +84,6 @@ function restoreOriginalContent() {
 
 function translateToSpanish(text) {
   const translations = {
-    Home: "Inicio",
-    Experience: "Experiencia",
-    Projects: "Proyectos",
-    "Skills - Tools": "Habilidades - Herramientas",
-    of: "de",
     "Hi, I'm": "Hola, soy",
     "A Front-end developer.": "Un desarrollador Front-end.",
     "Another great passion": "Otra gran pasión",
@@ -100,12 +95,7 @@ function translateToSpanish(text) {
     "You can always check out my work on": "Siempre puedes ver mi trabajo en",
     "You can find my resumé over here =>":
       "Puedes encontrar mi currículum aquí =>",
-    resumé: "currículum",
-    Press: "Presiona",
-    "to return to main section": "para volver a la sección principal",
-    Click: "Haz clic en",
-    "if you want translate all content":
-      "si quieres traducir todo el contenido",
+    resumé: "Currículum",
   };
 
   Object.keys(translations).forEach((key) => {
