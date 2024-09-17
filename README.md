@@ -16,18 +16,18 @@
             └── 📁images
                 └── animeflv.jpg
                 └── css.png
+                └── html.svg
+                └── html1.svg
+                └── html2.svg
                 └── html3.png
                 └── javascript.png
+                └── logo.png
+                └── logo2.png
+                └── logo3.png
                 └── php.png
                 └── Picture1.png
                 └── python.png
                 └── react.png
-    └── 📁server
-        └── 📁controllers
-            └── translateController.js
-        └── 📁routes
-            └── api.js
-        └── server.js
     └── 📁src
         └── 📁data
             └── 📁experience
@@ -45,13 +45,27 @@
                 └── php.html
                 └── python.html
                 └── react.html
+        └── 📁data_ES
+            └── 📁experiencia
+                └── experiencia1.html
+            └── 📁habilidades
+                └── css.html
+                └── html.html
+                └── javascript.html
+                └── php.html
+                └── python.html
+                └── react.html
+            └── 📁proyectos
+                └── proyecto1.html
+                └── proyecto2.html
+                └── proyecto3.html
+                └── proyecto4.html
+                └── proyecto5.html
         └── 📁js
             └── archlinux.js
-        └── index.html
     └── .env
     └── .gitignore
+    └── index.html
     └── marcosriverocv.pdf
-    └── package-lock.json
-    └── package.json
     └── README.md
 ```
