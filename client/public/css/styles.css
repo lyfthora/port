@@ -42,8 +42,17 @@ body {
   background-color: #0d1117;
   color: #c9d1d9;
   font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
+body.fade-in {
+  opacity: 1;
+}
+
+body.fade-out {
+  opacity: 0;
+}
 .darkmode {
   background-color: #0d1117;
   color: #c9d1d9;

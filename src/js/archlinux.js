@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   translateButton.addEventListener("click", toggleLanguage);
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      restoreMainContent();
-    }
-  });
+  // document.addEventListener("keydown", (event) => {
+  //   if (event.key === "Escape") {
+  //     restoreMainContent();
+  //   }
+  // });
 
   assignEventListeners();
 });
@@ -50,10 +50,25 @@ function updateLanguageContent() {
 }
 
 // esc para restaurar el contenido original
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    restoreMainContent();
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  // Fade in al cargar la página
+  setTimeout(() => {
+    body.classList.add("fade-in");
+  }, 50);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      body.classList.remove("fade-in");
+      body.classList.add("fade-out");
+
+      setTimeout(() => {
+        // Recargar la página después del fade out
+        window.location.reload();
+      }, 500);
+    }
+  });
 });
 
 // restaurar el contenido original
