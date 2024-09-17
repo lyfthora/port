@@ -133,6 +133,7 @@ function translateToEnglish() {
   }
 }
 
+// element
 function translateElementToEnglish(element) {
   if (element.nodeType === Node.TEXT_NODE) {
     // No hacemos nada con los nodos de texto
@@ -155,7 +156,6 @@ function translateElementToEnglish(element) {
   }
 }
 
-// para traducir el contenido a español
 function translateToSpanish(text) {
   const translations = {
     "Hello! I'm": "Hola! Soy",
@@ -183,7 +183,6 @@ function translateToSpanish(text) {
   return text;
 }
 
-// para actualizar el contenido
 async function updateContent(type, id) {
   console.log(`Actualizando contenido: ${type}, ${id}`);
   currentType = type;
@@ -191,12 +190,10 @@ async function updateContent(type, id) {
   const contentInfo = isSpanish ? contentInfoES : contentInfoEN;
   if (contentInfo[type] && contentInfo[type][id]) {
     try {
-      // cargar el contenido
       const content = await loadContent(contentInfo[type][id]);
       const contentContainer = document.getElementById("main-content");
       if (contentContainer) {
         contentContainer.innerHTML = content;
-        // obtener el contenedor de contenido
         const newContainer =
           contentContainer.querySelector(".container-content");
         if (newContainer) {
@@ -205,7 +202,6 @@ async function updateContent(type, id) {
         }
         console.log(`Contenido actualizado: ${type}, ${id}`);
         if (isSpanish) {
-          // obtener los elementos que se van a traducir
           const elementsToTranslate = contentContainer.querySelectorAll();
           elementsToTranslate.forEach((element) => {
             element.innerHTML = translateToSpanish(element.innerHTML);
@@ -222,7 +218,6 @@ async function updateContent(type, id) {
   }
 }
 
-// para cargar el contenido
 async function loadContent(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -231,7 +226,6 @@ async function loadContent(url) {
   return await response.text();
 }
 
-// para asignar los event listeners
 function assignEventListeners() {
   assignListeners("#experience", "experience-id", 1, 1);
   assignListeners("#projects", "project-id", 5, 5);
@@ -254,7 +248,6 @@ function assignListeners(selector, idAttribute, totalItems, resetOthers) {
     });
 }
 
-// para actualizar los indices
 function updateIndices(currentSelector, currentIndex, totalItems, resetOthers) {
   const selectors = ["#experience", "#projects", "#skills"];
   selectors.forEach((selector) => {
@@ -267,7 +260,6 @@ function updateIndices(currentSelector, currentIndex, totalItems, resetOthers) {
   });
 }
 
-// para cargar el contenido en ingles
 const contentInfoEN = {
   experience: { experience1: "src/data/experience/experience1.html" },
   projects: {
@@ -287,7 +279,6 @@ const contentInfoEN = {
   },
 };
 
-// para cargar el contenido en español
 const contentInfoES = {
   experience: { experience1: "src/data_ES/experiencia/experiencia1.html" },
   projects: {
