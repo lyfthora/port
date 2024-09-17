@@ -1,6 +1,8 @@
 let isSpanish = false;
 const originalTexts = new Map();
 let originalContent;
+let currentType = null;
+let currentId = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("main-content");
@@ -30,19 +32,51 @@ document.addEventListener("DOMContentLoaded", () => {
   assignEventListeners();
 });
 
-function toggleLanguage() {
-  isSpanish = !isSpanish;
+function updateLanguageContent() {
   const translateButton = document.getElementById("translateBtn");
 
   if (isSpanish) {
     translateContent();
     translateButton.innerHTML = `<span class="text-orange" style="cursor: pointer;">"EN"</span>`;
   } else {
-    restoreOriginalContent();
+    translateToEnglish();
     translateButton.innerHTML = `<span class="text-orange" style="cursor: pointer;">"ES"</span>`;
+  }
+
+  // si el contenido esta cargado, actualizar el contenido
+  if (currentType && currentId) {
+    updateContent(currentType, currentId);
   }
 }
 
+// esc para restaurar el contenido original
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    restoreMainContent();
+  }
+});
+
+// restaurar el contenido original
+function restoreMainContent() {
+  const contentContainer = document.getElementById("main-content");
+  contentContainer.innerHTML = originalContent;
+  contentContainer.classList.remove("hidden");
+
+  // resetear el contenido actual
+  currentType = null;
+  currentId = null;
+  // actualizar el contenido
+  updateLanguageContent();
+  // asignar los event listeners
+  assignEventListeners();
+}
+
+// para cambiar el idioma
+function toggleLanguage() {
+  isSpanish = !isSpanish;
+  updateLanguageContent();
+}
+// para traducir el contenido
 function translateContent() {
   const mainContainer = document.getElementById("main-container");
   translateElement(mainContainer);
@@ -56,7 +90,7 @@ function translateContent() {
     );
   }
 
-  // Actualizar el contenido dinámico si está cargado
+  // si el contenido esta cargado, actualizar el contenido
   const currentContent = document.querySelector(".container-content");
   if (currentContent) {
     const type = currentContent.getAttribute("data-content-type");
@@ -67,6 +101,7 @@ function translateContent() {
   }
 }
 
+// para traducir el contenido
 function translateElement(element) {
   if (element.nodeType === Node.TEXT_NODE) {
     element.nodeValue = translateToSpanish(element.nodeValue);
@@ -74,6 +109,7 @@ function translateElement(element) {
     for (let child of element.childNodes) {
       translateElement(child);
     }
+    // si el elemento tiene un placeholder, traducir el placeholder
     if (element.hasAttribute("placeholder")) {
       element.setAttribute(
         "placeholder",
@@ -83,25 +119,43 @@ function translateElement(element) {
   }
 }
 
-function restoreOriginalContent() {
-  const contentContainer = document.getElementById("main-content");
-  contentContainer.innerHTML = originalContent;
-  contentContainer.classList.remove("hidden");
+// para traducir el contenido a ingles
+function translateToEnglish() {
+  const mainContainer = document.getElementById("main-container");
+  translateElementToEnglish(mainContainer);
 
-  // Restaurar específicamente el contenido de #home-section-paragraph
   const homeSectionParagraph = document.getElementById(
     "home-section-paragraph"
   );
+
   if (homeSectionParagraph && originalTexts.has(homeSectionParagraph)) {
     homeSectionParagraph.innerHTML = originalTexts.get(homeSectionParagraph);
   }
-
-  isSpanish = false;
-  const translateButton = document.getElementById("translateBtn");
-  translateButton.innerHTML = `<span class="text-orange" style="cursor: pointer;">"ES"</span>`;
-  assignEventListeners();
 }
 
+function translateElementToEnglish(element) {
+  if (element.nodeType === Node.TEXT_NODE) {
+    // No hacemos nada con los nodos de texto
+  } else if (element.nodeType === Node.ELEMENT_NODE) {
+    for (let child of element.childNodes) {
+      translateElementToEnglish(child);
+    }
+    if (originalTexts.has(element)) {
+      element.innerHTML = originalTexts.get(element);
+    }
+    if (
+      element.hasAttribute("placeholder") &&
+      originalTexts.has(element.getAttribute("placeholder"))
+    ) {
+      element.setAttribute(
+        "placeholder",
+        originalTexts.get(element.getAttribute("placeholder"))
+      );
+    }
+  }
+}
+
+// para traducir el contenido a español
 function translateToSpanish(text) {
   const translations = {
     "Hello! I'm": "Hola! Soy",
@@ -129,15 +183,20 @@ function translateToSpanish(text) {
   return text;
 }
 
+// para actualizar el contenido
 async function updateContent(type, id) {
   console.log(`Actualizando contenido: ${type}, ${id}`);
+  currentType = type;
+  currentId = id;
   const contentInfo = isSpanish ? contentInfoES : contentInfoEN;
   if (contentInfo[type] && contentInfo[type][id]) {
     try {
+      // cargar el contenido
       const content = await loadContent(contentInfo[type][id]);
       const contentContainer = document.getElementById("main-content");
       if (contentContainer) {
         contentContainer.innerHTML = content;
+        // obtener el contenedor de contenido
         const newContainer =
           contentContainer.querySelector(".container-content");
         if (newContainer) {
@@ -146,6 +205,7 @@ async function updateContent(type, id) {
         }
         console.log(`Contenido actualizado: ${type}, ${id}`);
         if (isSpanish) {
+          // obtener los elementos que se van a traducir
           const elementsToTranslate = contentContainer.querySelectorAll();
           elementsToTranslate.forEach((element) => {
             element.innerHTML = translateToSpanish(element.innerHTML);
@@ -162,6 +222,7 @@ async function updateContent(type, id) {
   }
 }
 
+// para cargar el contenido
 async function loadContent(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -170,6 +231,7 @@ async function loadContent(url) {
   return await response.text();
 }
 
+// para asignar los event listeners
 function assignEventListeners() {
   assignListeners("#experience", "experience-id", 1, 1);
   assignListeners("#projects", "project-id", 5, 5);
@@ -192,6 +254,7 @@ function assignListeners(selector, idAttribute, totalItems, resetOthers) {
     });
 }
 
+// para actualizar los indices
 function updateIndices(currentSelector, currentIndex, totalItems, resetOthers) {
   const selectors = ["#experience", "#projects", "#skills"];
   selectors.forEach((selector) => {
@@ -204,6 +267,7 @@ function updateIndices(currentSelector, currentIndex, totalItems, resetOthers) {
   });
 }
 
+// para cargar el contenido en ingles
 const contentInfoEN = {
   experience: { experience1: "src/data/experience/experience1.html" },
   projects: {
@@ -223,6 +287,7 @@ const contentInfoEN = {
   },
 };
 
+// para cargar el contenido en español
 const contentInfoES = {
   experience: { experience1: "src/data_ES/experiencia/experiencia1.html" },
   projects: {
