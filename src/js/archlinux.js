@@ -242,36 +242,40 @@ async function loadContent(url) {
 }
 
 function assignEventListeners() {
-  assignListeners("#experience", "experience-id", 1, 1);
-  assignListeners("#projects", "project-id", 5, 5);
-  assignListeners("#skills", "skills-id", 6, 6);
-}
-
-function assignListeners(selector, idAttribute, totalItems, resetOthers) {
   document
-    .querySelectorAll(`${selector} .ui-list > div`)
+    .querySelectorAll("#experience .ui-list div")
     .forEach((item, index) => {
-      item.addEventListener("click", async () => {
-        const id = item.getAttribute(idAttribute);
-        if (id) {
-          await updateContent(selector.slice(1), id);
-          updateIndices(selector, index + 1, totalItems, resetOthers);
-        } else {
-          console.warn(`Atributo ${idAttribute} no encontrado en:`, item);
-        }
+      item.addEventListener("click", () => {
+        const id = item.getAttribute("experience-id");
+        updateContent("experience", id);
+        const listIndex = document.querySelector("#experience .list-index p");
+        listIndex.textContent = `${index + 1} of 1`;
+        document.querySelector("#projects .list-index p").textContent =
+          "1 of 5";
+        document.querySelector("#skills-index p").textContent = "1 of 6";
       });
     });
-}
 
-function updateIndices(currentSelector, currentIndex, totalItems, resetOthers) {
-  const selectors = ["#experience", "#projects", "#skills"];
-  selectors.forEach((selector) => {
-    const listIndex = document.querySelector(`${selector} .list-index p`);
-    if (selector === currentSelector) {
-      listIndex.textContent = `${currentIndex} of ${totalItems}`;
-    } else if (resetOthers) {
-      listIndex.textContent = `1 of ${resetOthers}`;
-    }
+  document
+    .querySelectorAll("#projects .ui-list > div")
+    .forEach((item, index) => {
+      item.addEventListener("click", () => {
+        const id = item.getAttribute("project-id");
+        updateContent("project", id);
+        const listIndex = document.querySelector("#projects .list-index p");
+        listIndex.textContent = `${index + 1} of 5`;
+        document.querySelector("#skills-index p").textContent = "1 of 6";
+      });
+    });
+
+  document.querySelectorAll("#skills .ui-list > div").forEach((item, index) => {
+    item.addEventListener("click", () => {
+      const id = item.getAttribute("skills-id");
+      updateContent("skills", id);
+      const skillsIndex = document.querySelector("#skills-index p");
+      skillsIndex.textContent = `${index + 1} of 6`;
+      document.querySelector("#projects .list-index p").textContent = "1 of 5";
+    });
   });
 }
 
