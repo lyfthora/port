@@ -261,7 +261,7 @@ function assignEventListeners() {
     .forEach((item, index) => {
       item.addEventListener("click", () => {
         const id = item.getAttribute("project-id");
-        updateContent("project", id);
+        updateContent("projects", id);
         const listIndex = document.querySelector("#projects .list-index p");
         listIndex.textContent = `${index + 1} of 5`;
         document.querySelector("#skills-index p").textContent = "1 of 6";
