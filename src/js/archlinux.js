@@ -179,7 +179,7 @@ function translateToSpanish(text) {
     ", a passionate Front-End developer from Spain":
       ", un desarrollador Front-End apasionado de España",
     "A Front-end developer.": "Un desarrollador Front-end.",
-    "Another great passion": "Otra gran pasión",
+    "Another great passion of": "Otra gran pasión de",
     "mine is back-end development, where I like to learn about designing and optimizing server-side logic that supports those front-end features.":
       "lo que me gusta es el desarrollo back-end, donde me gusta aprender sobre el diseño y la optimización de la lógica del servidor que soporta esas características del front-end.",
     "I'm a passionate developer, always looking for new challenges and opportunities to learn.":
