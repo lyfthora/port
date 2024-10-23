@@ -251,7 +251,7 @@ function assignEventListeners() {
         const listIndex = document.querySelector("#experience .list-index p");
         listIndex.textContent = `${index + 1} of 1`;
         document.querySelector("#projects .list-index p").textContent =
-          "1 of 5";
+          "1 of 6";
         document.querySelector("#skills-index p").textContent = "1 of 6";
       });
     });
@@ -263,7 +263,7 @@ function assignEventListeners() {
         const id = item.getAttribute("project-id");
         updateContent("projects", id);
         const listIndex = document.querySelector("#projects .list-index p");
-        listIndex.textContent = `${index + 1} of 5`;
+        listIndex.textContent = `${index + 1} of 6`;
         document.querySelector("#skills-index p").textContent = "1 of 6";
       });
     });
@@ -274,7 +274,7 @@ function assignEventListeners() {
       updateContent("skills", id);
       const skillsIndex = document.querySelector("#skills-index p");
       skillsIndex.textContent = `${index + 1} of 6`;
-      document.querySelector("#projects .list-index p").textContent = "1 of 5";
+      document.querySelector("#projects .list-index p").textContent = "1 of 6";
     });
   });
 }
@@ -282,6 +282,7 @@ function assignEventListeners() {
 const contentInfoEN = {
   experience: { experience1: "src/data/experience/experience1.html" },
   projects: {
+    project6: "src/data/project/project6.html",
     project1: "src/data/project/project1.html",
     project2: "src/data/project/project2.html",
     project3: "src/data/project/project3.html",
@@ -301,6 +302,7 @@ const contentInfoEN = {
 const contentInfoES = {
   experience: { experience1: "src/data_ES/experiencia/experiencia1.html" },
   projects: {
+    project6: "src/data_ES/proyectos/proyecto6.html",
     project1: "src/data_ES/proyectos/proyecto1.html",
     project2: "src/data_ES/proyectos/proyecto2.html",
     project3: "src/data_ES/proyectos/proyecto3.html",
