@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <div class="container-content">
+    <div class="outer-paragraph-container">
+      <div class="inner-paragraph-container mt-4">
+        <div>
+          <h1><span class="text-pink">Go</span></h1>
+          <h2></h2>
+          <div class="technologies-row"></div>
+        </div>
+        <div>
+<p>
+  <span class="text-orange">Go</span> is an open-source programming language developed by Google in 2009.
+  It was designed to be <span class="text-blue">simple, efficient, and easy to maintain</span> for large-scale projects.
+  It compiles directly to <span class="text-pink">native machine code</span>, producing fast and lightweight executables
+  that do not require external runtimes.
+
+  Its type system is static, but includes type inference, reducing verbosity without sacrificing compile-time safety.
+  One of its most distinctive features is its concurrency model: using goroutines and channels, it allows running thousands of
+  tasks in parallel with minimal memory usage, without manually managing threads. This makes it especially suitable for servers,
+  APIs, and systems handling many simultaneous connections.
+</p>
+        </div>
+      </div>
+      <code class="html"><pre>
+<span class="text-orange">router := gin.Default()</span>
+router.Use(<span class="text-blue">middleware.Cors()</span>)
+
+// rate limiting
+limiter := <span class="text-blue">middleware.NewLimiter(rate.Every(2*time.Second), 5)</span>
+router.Use(<span class="text-blue">middleware.RateLimit(limiter)</span>)
+
+<span class="text-pink">router.GET("/health", func(c *gin.Context)</span> {
+	c.JSON(http.StatusOK, gin.H{"status": "ok"})
+})
+
+<span class="text-orange">userController := controllers.NewUserController()</span>
+<span class="text-orange">projectController := controllers.NewProjectController()</span>
+<span class="text-orange">authController := controllers.NewAuthController()</span>
+
+<span class="text-orange">api := router.Group("api")</span>
+{
+	// Auth
+	<span class="text-pink">api.POST("/auth/login", authController.Login)</span>
+
+	// users
+	<span class="text-pink">api.POST("/user", userController.CreateUser)</span>
+
+	// Protected routes
+	<span class="text-orange">authRequired := api.Group("/")</span>
+	authRequired.Use(<span class="text-blue">middleware.Authenticate()</span>)
+	{
+		<span class="text-pink">authRequired.POST("/userData", userController.GetUserData)</span>
+
+		// projects
+		<span class="text-pink">authRequired.GET("/projects", projectController.GetProjects)</span>
+		<span class="text-pink">authRequired.POST("/projects", projectController.CreateProject)</span>
+
+		// Project-specific routes
+		<span class="text-orange">projectSpecific := authRequired.Group("/projects/:projectId")</span>
+		projectSpecific.Use(<span class="text-blue">middleware.OwnershipAuth()</span>)
+		{
+			<span class="text-pink">projectSpecific.PATCH("", projectController.PatchProject)</span>
+			<span class="text-pink">projectSpecific.PUT("/duplicate", projectController.DuplicateProject)</span>
+			<span class="text-pink">projectSpecific.DELETE("", projectController.DeleteProject)</span>
+		}
+	}
+}
+<span class="text-orange">port := cfg.Port</span>
+log.Printf("Server running on port %s", port)
+<span class="text-orange">log.Fatal(router.Run(":" + port))</span>
+</code></pre>
+      </div>
+    </div>
+  </div>
+</html>
+
+
+
+
+
