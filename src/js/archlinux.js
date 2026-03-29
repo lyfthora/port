@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Guardar los textos originales
   document
     .querySelectorAll(
-      ".translatable p, .title p, .list-index p, #home-section-paragraph"
+      ".translatable p, .title p, .list-index p, #home-section-paragraph",
     )
     .forEach((element) => {
       originalTexts.set(element, element.innerHTML);
@@ -97,11 +97,11 @@ function translateContent() {
   translateElement(mainContainer);
 
   const homeSectionParagraph = document.getElementById(
-    "home-section-paragraph"
+    "home-section-paragraph",
   );
   if (homeSectionParagraph) {
     homeSectionParagraph.innerHTML = translateToSpanish(
-      homeSectionParagraph.innerHTML
+      homeSectionParagraph.innerHTML,
     );
   }
 
@@ -128,7 +128,7 @@ function translateElement(element) {
     if (element.hasAttribute("placeholder")) {
       element.setAttribute(
         "placeholder",
-        translateToSpanish(element.getAttribute("placeholder"))
+        translateToSpanish(element.getAttribute("placeholder")),
       );
     }
   }
@@ -140,7 +140,7 @@ function translateToEnglish() {
   translateElementToEnglish(mainContainer);
 
   const homeSectionParagraph = document.getElementById(
-    "home-section-paragraph"
+    "home-section-paragraph",
   );
 
   if (homeSectionParagraph && originalTexts.has(homeSectionParagraph)) {
@@ -165,7 +165,7 @@ function translateElementToEnglish(element) {
     ) {
       element.setAttribute(
         "placeholder",
-        originalTexts.get(element.getAttribute("placeholder"))
+        originalTexts.get(element.getAttribute("placeholder")),
       );
     }
   }
@@ -243,16 +243,16 @@ async function loadContent(url) {
 
 function assignEventListeners() {
   document
-    .querySelectorAll("#experience .ui-list div")
+    .querySelectorAll("#experience .ui-list > div")
     .forEach((item, index) => {
       item.addEventListener("click", () => {
         const id = item.getAttribute("experience-id");
         updateContent("experience", id);
         const listIndex = document.querySelector("#experience .list-index p");
-        listIndex.textContent = `${index + 1} of 1`;
+        listIndex.textContent = `${index + 1} of 2`;
         document.querySelector("#projects .list-index p").textContent =
           "1 of 7";
-        document.querySelector("#skills-index p").textContent = "1 of 6";
+        document.querySelector("#skills-index p").textContent = "1 of 8";
       });
     });
 
@@ -264,7 +264,7 @@ function assignEventListeners() {
         updateContent("projects", id);
         const listIndex = document.querySelector("#projects .list-index p");
         listIndex.textContent = `${index + 1} of 7`;
-        document.querySelector("#skills-index p").textContent = "1 of 6";
+        document.querySelector("#skills-index p").textContent = "1 of 8";
       });
     });
 
@@ -273,14 +273,18 @@ function assignEventListeners() {
       const id = item.getAttribute("skills-id");
       updateContent("skills", id);
       const skillsIndex = document.querySelector("#skills-index p");
-      skillsIndex.textContent = `${index + 1} of 6`;
+      skillsIndex.textContent = `${index + 1} of 8`;
       document.querySelector("#projects .list-index p").textContent = "1 of 7";
     });
   });
 }
 
 const contentInfoEN = {
-  experience: { experience1: "src/data/experience/experience1.html" },
+  experience: {
+    experience1: "src/data/experience/experience1.html",
+    experience2: "src/data/experience/experience2.html",
+  },
+
   projects: {
     project6: "src/data/project/project6.html",
     project1: "src/data/project/project1.html",
@@ -297,11 +301,16 @@ const contentInfoEN = {
     skills4: "src/data/skills-tools/php.html",
     skills5: "src/data/skills-tools/python.html",
     skills6: "src/data/skills-tools/react.html",
+    skills7: "src/data/skills-tools/typescript.html",
+    skills8: "src/data/skills-tools/go.html",
   },
 };
 
 const contentInfoES = {
-  experience: { experience1: "src/data_ES/experiencia/experiencia1.html" },
+  experience: {
+    experience1: "src/data_ES/experiencia/experiencia1.html",
+    experience2: "src/data_ES/experiencia/experiencia2.html",
+  },
   projects: {
     project7: "src/data_ES/proyectos/proyecto7.html",
     project6: "src/data_ES/proyectos/proyecto6.html",
@@ -318,5 +327,7 @@ const contentInfoES = {
     skills4: "src/data_ES/habilidades/php.html",
     skills5: "src/data_ES/habilidades/python.html",
     skills6: "src/data_ES/habilidades/react.html",
+    skills7: "src/data_ES/habilidades/typescript.html",
+    skills8: "src/data_ES/habilidades/go.html",
   },
 };
