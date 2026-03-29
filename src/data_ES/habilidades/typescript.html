@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="container-content">
+  <div class="outer-paragraph-container">
+    <div class="inner-paragraph-container mt-4">
+      <div>
+        <h1><span class="text-blue">TypeScript</span></h1>
+        <h2></h2>
+        <div class="technologies-row"></div>
+      </div>
+      <div>
+        <p>
+          <span class="text-orange">TypeScript</span> se creó en 2012 para
+          mejorar JavaScript en aplicaciones a gran escala, introduciendo
+          <span class="text-blue">tipado estático</span> que ayuda a detectar errores
+          durante la compilación y reducir fallos en producción.
+        </p>
+        <p>
+          Además, <span class="text-pink">hace que el código sea más legible</span>,
+          mejora la colaboración en equipo, permite refactorizaciones seguras y
+          potencia la experiencia de desarrollo con funciones del IDE como
+          autocompletado y navegación inteligente.
+        </p>
+      </div>
+    </div>
+    <code class="html"><pre>
+interface <span class="text-orange">FolderTreeProps</span> {
+  folders: <span class="text-blue">Folder[]</span>;
+  selectedFolderId: <span class="text-pink">number | null</span>;
+  folderCounts: <span class="text-blue">Record<number, number></span>;
+  onSelectFolder: <span class="text-pink">(id: number) => void</span>;
+  onToggleExpand: <span class="text-pink">(id: number) => void</span>;
+  onCreateFolder: <span class="text-pink">(parentId: number | null, name: string) => void</span>;
+  onDeleteFolder: <span class="text-pink">(id: number) => void</span>;
+  onRenameFolder: <span class="text-pink">(id: number, newName: string) => void</span>;
+  onNoteDrop?: <span class="text-pink">(noteId: number, targetFolderId: number) => void</span>;
+  onFolderDrop?: <span class="text-pink">(folderId: number, targetFolderId: number | null) => void</span>;
+}
+
+export default function <span class="text-orange">FolderTree</span>({
+  folders,
+  selectedFolderId,
+  folderCounts,
+  onSelectFolder,
+  onToggleExpand,
+  onCreateFolder,
+  onDeleteFolder,
+  onRenameFolder,
+  onNoteDrop,
+  onFolderDrop,
+}: <span class="text-orange">FolderTreeProps</span>) {
+  const [contextMenu, setContextMenu] = React.useState<<span class="text-blue">{ x: number; y: number; folderId: number } | null</span>>(null);
+  const [modalType, setModalType] = React.useState<<span class="text-pink">'create' | 'rename' | null</span>>(null);
+
+  return <div>...</div>;
+}
+</code></pre>
+  </div>
+</div>
+</div>
+
+</html>
